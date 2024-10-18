@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Logo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+   <script>
+		body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.logo-container {
+    perspective: 1000px; /* Creates a 3D space */
+}
+
+.logo {
+    width: 300px;
+    transform-style: preserve-3d; /* Ensures child elements are in 3D */
+    transform: rotateY(20deg) rotateX(10deg); /* 3D rotation */
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3); /* Shadow for 3D effect */
+    transition: transform 0.5s ease-in-out;
+}
+
+.logo-container:hover .logo {
+    transform: rotateY(0deg) rotateX(0deg); /* On hover, rotate back */
+}
+</script>
+
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo-transparent1-png.png" alt="Concrete Craft Logo" class="logo">
+    </div>
+</body>
+</html>

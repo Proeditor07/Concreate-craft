@@ -1,0 +1,849 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Service - ConcreteCraft</title>
+            <style>
+                /* Global Styles */
+                body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding-top: 60px; /* Adjusted for fixed nav */
+                color: #333;
+                background-image: url(./images/sun-pattern.webp);
+                /* background-size: cover; Ensures the image covers the entire background */
+                background-attachment: fixed; /* Keeps the background fixed while scrolling */
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                background-color: #f5f5f5;
+}
+
+                .header, .footer {
+                    background-color: #2A3F54;
+                    color: white;
+                    padding: 20px 0;
+                }
+                .header-content {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 20px;
+                }
+                .header img {
+                    width: 150px;
+                    height: auto;
+                    border-radius: 8px;
+                }
+                .header-text {
+                    text-align: right;
+                }
+                .header button {
+                    margin-top: 10px;
+                    padding: 10px 20px;
+                    background-color: #ffffff;
+                    color: #2A3F54;
+                    border: none;
+                    cursor: pointer;
+                }
+        
+                /* Fixed Navigation Section */
+                .fixed-nav {
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+                    background-color: #2A3F54;
+                    color: white;
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 10px 20px;
+                    box-shadow: 0 2px 4px rgba(157, 151, 151, 0.2);
+                }
+        
+                .fixed-nav .nav-content {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                }
+        
+                .fixed-nav .nav-buttons {
+                    display: flex;
+                    gap: 15px;
+                    align-items: center;
+                }
+        
+                .fixed-nav button {
+                    padding: 10px 15px;
+                    background-color: transparent;
+                    color: white;
+                    border: 1px solid white;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: background-color 0.3s, color 0.3s;
+                }
+        
+                .fixed-nav button:hover {
+                    background-color: white;
+                    color: #2A3F54;
+                }
+        
+                .fixed-nav img {
+                    width: 50px;
+                    height: auto;
+                }
+        
+                .nav-content img {
+                    margin-left: auto;
+                }
+        
+                .footer {
+                    margin-top: auto; /* Pushes the footer to the bottom */
+                    text-align: center;
+                }
+        
+                .footer-links {
+                    margin-top: 10px;
+                }
+        
+                .footer-links a {
+                    color: white;
+                    margin: 0 15px;
+                    text-decoration: none;
+                }
+ 
+
+  
+
+        
+              
+                /* Dropdown Menu Styles */
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+        
+                .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #ffffff;
+                    min-width: 200px;
+                    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                    z-index: 1;
+                    right: 0; /* Aligns to the right */
+                    border-radius: 5px;
+                    overflow: hidden;
+                }
+        
+                .dropdown-content a {
+                    color: #333;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    transition: background-color 0.3s;
+                }
+        
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+        
+                .dropdown:hover .dropdown-content {
+                    display: block;
+                }
+        
+                .dropdown:hover .dropbtn {
+                    background-color: #2A3F54;
+                }
+            
+
+                /* contact info Styles */
+                .contact-info {
+            background-image: url('./images/do\ it\ today\ img2.jpg'); /* Replace with your background image path */
+            background-size: cover; /* Adjusts the size of the background image */
+            background-position: center; /* Centers the background image */
+            background-repeat: no-repeat; /* Prevents repeating the background image */
+            color: #dedede; /* Text color for better contrast */
+            padding: 30px;
+            border-radius: 0;
+            box-shadow: 0 2px 4px rgba(102, 142, 168, 0.1);
+        }
+
+       
+
+        .contact-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact-info ul li {
+            margin: 10px 0;
+        }
+
+        .contact-info a {
+            color: #dedede; /* Color for links for better visibility */
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+
+/* slider */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 800px; /* Increased width to accommodate text */
+    margin: auto;
+    overflow: hidden;
+    padding-bottom: 1%;
+}
+
+.slider {   
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    display: flex;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 60%;
+    height: auto;
+}
+
+.text-content {
+    width: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.text-content h5 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.prev {
+    left: 10px;
+    transform: translateY(-50%);
+    
+
+}
+
+.next {
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+
+
+
+
+
+.container {
+            width: 90%;
+            margin: auto;
+            padding: 20px 0;
+        }
+        .section {
+            padding: 20px 0;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .section h2 {
+            text-align: center;
+            color: #2A3F54;
+        }
+        .section p, .section ul {
+            width: 80%;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+        .why-choose-us {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            flex-direction: row-reverse;
+        }
+        .why-choose-us img {
+            width: 45%;
+            border-radius: 8px;
+        }
+        .why-choose-us-text {
+            width: 45%;
+        }
+        .small-text {
+    font-size: 0.65em; /* Adjust this value to your preference */
+  }
+        .service-item {
+            display: flex;
+           JUSTIFY-CONTENT: SPACE-BETWEEN;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px 20px;
+        }
+        .service-item img {
+            width: 40%;
+            border-radius: 8px;
+        }
+        .service-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .service-text {
+            width: 50%;
+            padding: 0 20px;
+        }
+
+        .container2 {
+            display: flex; /* Enable flexbox layout */
+            justify-content: space-between; /* Distribute space between items */
+            gap: 10px; /* Optional: space between sections */
+            background: lightskyblue;
+        }
+
+        .section {
+            flex: 1; /* Allow sections to grow equally */
+            padding: 20px; /* Add some padding */
+            border: 1px solid #ccc; /* Optional: border for visual distinction */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for visual effect */
+        }
+
+
+        .txt{
+            padding: inherit;
+    color: chocolate;
+    text-decoration: underline;
+    text-decoration-color: darkkhaki;
+    flex: auto;
+    text-decoration-style: double;
+    text-shadow: darkgrey;
+    text-size-adjust: 30px;
+
+        }
+
+        .txt{
+            padding: 10px 0;
+            margin: 0;
+    /* color: chocolate; */
+
+        }
+
+        .section p {
+            width: 80%;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .discription {
+            discription
+        }
+        
+
+        /* kkkkk */
+.why-choose-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.why-choose-section h2 {
+    font-size: 24px;
+    color: #0c0c5d;
+    margin-bottom: 30px;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+}
+
+.feature-item img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    margin: 0;
+}
+
+
+
+#services {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4%;
+    
+
+}
+
+.service-item {
+    width: 100%; /* Each service item takes full width */
+    margin: 1% 0; /* Add vertical spacing between each service item */
+    display: flex; /* Use flexbox to align the image and text horizontally */
+    align-items: center; /* Vertically align items in the center */
+}
+
+.image-slider {
+    width: 50%; /* Image slider takes 50% of the container */
+    height: auto; /* Auto height so it adapts to the image's aspect ratio */
+    overflow: hidden; /* Hide anything outside the bounds */
+    position: relative;
+    margin-right: 20px; /* Space between the image slider and text */
+    align-items: center;
+}
+
+.slides img {
+    width: 100%; /* Ensure each image takes up the full width of the slider container */
+    height: 100%;
+    object-fit: contain; /* Change this to 'contain' to prevent zooming */
+    /* object-fit: none; */ /* Alternatively, you can try 'none' if 'contain' doesn't work as expected */
+}
+
+.slides {
+    display: flex;
+    width: 100%; /* Ensure the images container fills the slider width */
+    height: 100%; /* Make sure it respects the container's height */
+    transition: transform 0.5s ease;
+    
+    align-items: center;
+}
+
+.slides img {
+    width: 100%; /* Ensure the image scales to the full width of the container */
+    height: auto; /* Maintain the aspect ratio by setting the height to auto */
+    object-fit: contain; /* Ensure the whole image is visible without cropping */
+    display: block; /* Fix any inline spacing issues */
+    align-items: center;
+}
+
+.service-text {
+    width: 45%; /* Text takes the remaining 45% of the container */
+    padding: 20px; /* Adds padding around the text */
+    background-color: #f9f9f9; /* Optional: Add background color for better readability */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow for contrast */
+}
+
+.txt, .txt1 {
+    margin: 11px;
+}
+
+.description {
+    margin-top: 10px;
+}
+
+
+
+/* button */
+button {
+    padding: 10px 20px;
+    margin-right: 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+
+button:hover {
+    background-color: #1ea532;
+    
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.button-ss {
+    flex: auto;
+    width: 100%; /* Each service item takes full width */
+    margin: 3% 2%; /* Add vertical spacing between each service item */
+    display: flex; /* Use flexbox to align the image and text horizontally */
+    padding: 2% 2%;
+    align-items: center; /* Vertically align items in the center */
+    transform: translateY(-2px); /* Slight lift effect */
+    
+}
+
+
+/* PDF anker btn */
+
+.pdf-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF; /* Blue background */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.pdf-button:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.pdf-button:active {
+    background-color: #003d7a; /* Even darker blue when clicked */
+    transform: translateY(1px); /* Slightly depress the button */
+}
+
+
+/* sellls excicative */
+
+.contact-section {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for the section */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 800px; /* Max width for the section */
+    margin: 20px auto; /* Center the section with margin */
+}
+
+.contact-info h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Dark text color */
+}
+
+.contact-info h3 {
+    margin-top: 20px;
+    color: #007BFF; /* Blue color for subheading */
+    text-align: center; /* Center the subheading */
+}
+
+.executive {
+    background-color: #fff; /* White background for each executive's info */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Space inside each executive's info box */
+    margin: 10px 0; /* Space between each executive's info box */
+}
+
+.executive h4 {
+    margin: 0;
+    color: #333; /* Dark color for name */
+}
+
+.executive p {
+    margin: 0 0;
+    color: #555; /* Slightly lighter color for contact details */
+}
+
+.executive a {
+    color: #007BFF; /* Blue color for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.executive a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+.marginl{
+    margin: 12px;
+}
+
+
+            </style>
+        </head>
+        <body>
+
+            
+            <!-- Fixed Navigation Section -->
+            <div class="fixed-nav">
+                <div class="nav-content">
+                    <img src="./images/logo-transparent-png.png" alt="Logo Image" style="width: 250px; margin-left: 50px;"> <!-- Replace with your image path -->
+                    <div class="nav-buttons" style="margin-right: 80px;">
+                        <button onclick="window.location.href='./index.html'">Home</button>
+                        <button onclick="window.location.href='./about1.html'">About</button>
+                        <button onclick="window.location.href='./maincal.html'">Concrete Calculator</button>
+                        
+                        <!-- Services Dropdown Menu -->
+                        <div class="dropdown">
+                            <button class="dropbtn">Services</button>
+                            <div class="dropdown-content">
+                                <a href="#">Ready Mix Concrete</a>
+                                <a href="#">Concrete Blocks</a>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+
+       <!-- Services Section -->
+        <div>
+            <h1 style=" margin-top: 5%; text-align: center;">Discover Our Services</h1>
+    
+    <div id="services" class="section container">
+
+    <!-- Ready-mix concrete -->
+    <div class="service-item">
+        <div class="image-slider">
+            <div class="slides">
+                <img src="./images/concrete-delivery.jpg" alt="Concrete">
+                <img src="./images/pump.webp" alt="Concrete">
+                <img src="./images/Stationary-concrete-pump-on-the-construction-site-01-1024x682.jpg" alt="Concrete">
+                <img src="./images/truck-mixer.jpg" alt="Concrete">
+            </div>
+        </div>
+        <div class="service-text">
+            <h1  class="txt">Ready-mix concrete</h1>     
+            <p class="description">At ConcreteCrafts, we specialize in providing high-quality Ready-Mix Concrete (RMC) for all your construction needs. As a trusted RMC plant, we supply premium concrete that is mixed to precise specifications, ensuring strength, durability, and consistency for every project.</p>
+            <br>
+            <p><strong>Price: </strong>₹ 3580  &nbsp; m³   &nbsp; (M-20)</p>
+            <p><strong>Price: </strong>₹ 3700  &nbsp; m³   &nbsp; (M-25)</p>
+            <p><strong>Price: </strong>₹ 3900  &nbsp; m³   &nbsp; (M-35)</p>
+            <div class="button-ss">
+                <button id="buy-btn">BUY</button>
+                <button id="buy-btn" onclick="window.location.href='./xx.html'">Concrete Calculator</button>
+                <!-- <button id="more-info-btn">More Info</button> -->
+                <a href="http://your-pdf-link.pdf" class="pdf-button">Open PDF</a>
+            </div>
+            <div class="">
+                <h2>Contact Us for Quick Assistance</h2>
+                <div class="">
+                    <!-- <h3>Our Sales Executives</h3> -->
+                    <div class="executive">
+                        <h4>Shivam Somwanshi</h4>
+                        <p>Phone: <a href="tel:+917744817803">+91 7744817803</a></p>
+                        <p>Email: <a href="info.concretecrafts@gmail.com">info.concretecrafts@gmail.com</a></p>
+                    </div>
+                    <!-- Add more executives as needed -->
+                </div>
+            </div> 
+        </div>
+    </div>
+
+     <!-- Concrete Block -->
+    <div class="service-item">
+        <div class="image-slider">
+            <div class="slides">
+                <img src="./images/Concrete Blocks.jpg" alt="Concrete">
+                <img src="./images/Concrete Blocks 1.jpg" alt="Concrete">
+                <img src="./images/Concrete Blocks 3.jpg.png" alt="Concrete">
+            </div>
+        </div>
+        <div class="service-text">
+            <h1  class="txt">Concrete Blocks</h1>     
+            <p class="description"> At ConcreteCrafts, we provide durable and versatile concrete blocks suitable for various construction projects. Our blocks are designed for strength and long-lasting performance, whether for walls, foundations, or decorative purposes. </p>
+            <br>
+            
+            <li class="marginl">AAC Blocks &nbsp; <strong>Price: </strong>₹ 57 per peace  (25mm x 290mm)</li> 
+            <li class="marginl">Geo Blocks &nbsp; <strong>Price: </strong>₹ 75 per peace  (35mm x 390mm)</li> 
+            <li class="marginl">Hollow Blocks &nbsp; <strong>Price: </strong>₹ 35 per peace  (35mm x 390mm)</li>
+            <li class="marginl">Fly Ash Bricks &nbsp; <strong>Price: </strong>₹ 5 per peace  (35mm x 390mm)</li>
+            <div class="button-ss">
+                <button id="buy-btn">BUY</button>
+                <!-- <button id="more-info-btn">More Info</button> -->
+                <a href="http://your-pdf-link.pdf" class="pdf-button">Open PDF</a>
+            </div>
+            <div class="">
+                <h2>Contact Us for Quick Assistance</h2>
+                <div class="">
+                    <!-- <h3>Our Sales Executives</h3> -->
+                    <div class="executive">
+                        <h4>Shivam Somwanshi</h4>
+                        <p>Phone: <a href="tel:+917744817803">+91 7744817803</a></p>
+                        <p>Email: <a href="info.concretecrafts@gmail.com">info.concretecrafts@gmail.com</a></p>
+                    </div>
+                    <!-- Add more executives as needed -->
+                </div>
+            </div> 
+        </div>
+    </div>
+
+
+    <!-- Paver Block -->
+    <div class="service-item">
+        <div class="image-slider">
+            <div class="slides">
+                <img src="./images/paver1.jpg" alt="Concrete">
+                <img src="./images/paver2.png" alt="Concrete">
+                <img src="./images/paver.webp" alt="Concrete">
+            </div>
+        </div>
+        <div class="service-text">
+            <h1  class="txt">Paver Block</h1>     
+            <p class="description"> At ConcreteCrafts, we provide durable and versatile concrete blocks suitable for various construction projects. Our blocks are designed for strength and long-lasting performance, whether for walls, foundations, or decorative purposes. </p>
+            <br>
+            
+            <li class="marginl">Regular Paver &nbsp; <strong>Price: </strong>₹ 4500 per Brass (80mm)</li> 
+            <li class="marginl">Hydrolic machine paver &nbsp; <strong>Price: </strong>₹ 5600 per Beace (80mm)</li> 
+            <div class="button-ss">
+                <button id="buy-btn">BUY</button>
+                <!-- <button id="more-info-btn">More Info</button> -->
+                <a href="http://your-pdf-link.pdf" class="pdf-button">Open PDF</a>
+            </div>
+            <div class="">
+                <h2>Contact Us for Quick Assistance</h2>
+                <div class="">
+                    <!-- <h3>Our Sales Executives</h3> -->
+                    <div class="executive">
+                        <h4>Shivam Somwanshi</h4>
+                        <p>Phone: <a href="tel:+917744817803">+91 7744817803</a></p>
+                        <p>Email: <a href="info.concretecrafts@gmail.com">info.concretecrafts@gmail.com</a></p>
+                    </div>
+                    <!-- Add more executives as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    
+</div>
+
+
+
+
+    <div class="container">
+        <div class="why-choose-section">
+            <!-- <h2>Why Choose ConcreteCraft Services</h2> -->
+            <div class="features">
+                <div class="feature-item">
+                    <img src="./images/architect.png" alt="Concrete Truck">
+                    <p>Nanded's favorite concrete contractor</p>
+                </div>
+                <div class="feature-item">
+                    <img src="./images/rupee-indian.png" alt="Price Match">
+                    <p>We aim to beat any price in Nanded</p>
+                </div>
+                <div class="feature-item">
+                    <img src="./images/cement-truck.png" alt="Delivery">
+                    <p>Same day & next day deliveries</p>
+                </div>
+                <div class="feature-item">
+                    <img src="./images/profit.png" alt="Pay for Use">
+                    <p>Only pay for what you use</p>
+                </div>
+                <div class="feature-item">
+                    <img src="./images/cement.png" alt="Concrete Types">
+                    <p>All types of concrete delivered daily</p>
+                </div>
+            </div>
+        </div>    
+
+
+
+    
+
+                
+
+                <!-- Contact Information Section -->
+        <div class="about-section1 contact-info">
+            <h2>Contact Information</h2>
+            <p>If you have any questions or inquiries, feel free to reach out to us:</p>
+            <ul>
+                <li>Email: <a href="mailto:info.concretecrafts@gmaiil.com">info.concretecrafts@gmaiil.com</a></li>
+                <li>Phone: +91-7744817803</li>
+                <li>Address: ConcreteCraft, ITI Corner Nanded</li>
+            </ul>
+        </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>&copy; 2024 ConcreteCraft. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let sliders = document.querySelectorAll(".image-slider .slides");
+            
+                    sliders.forEach(function(slider) {
+                        let images = slider.children;
+                        let index = 0;
+                        let totalImages = images.length;
+            
+                        setInterval(function() {
+                            index = (index + 1) % totalImages;
+                            slider.style.transform = `translateX(-${index * 100}%)`;
+                        }, 3000); // Change image every 3 seconds
+                    });
+                });
+
+
+
+
+               // Redirects the user to the 'buy' page when BUY button is clicked
+    document.getElementById('buy-btn').addEventListener('click', function() {
+        window.location.href = 'buy-page.html'; // Replace with the actual URL of your buy page
+    });
+
+    // Opens a popup window with more information when More Info button is clicked
+    document.getElementById('more-info-btn').addEventListener('click', function() {
+        // You can choose between a new window or a popup
+        // New Window (Uncomment if you prefer this option)
+        // window.open('more-info-page.html', '_blank'); // Replace with the URL of your more info page
+
+        // Popup Window
+        let popup = window.open('', 'popup', 'width=600,height=400');
+        popup.document.write(`
+            <html>
+                <head>
+                    <title>More Info</title>
+                </head>
+                <body>
+                    <h2>More Information About Our Concrete Services</h2>
+                    <p>Here you can provide additional details about the services, advantages, or any other relevant information.</p>
+                    <button onclick="window.close()">Close</button>
+                </body>
+            </html>
+        `);
+    });
+            </script>
+            
+            
+        </body>
+        </html>
