@@ -1,1097 +1,708 @@
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Home - ConcreteCraft</title>
-            <style>
-                /* Global Styles */
-                body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding-top: 60px; /* Adjusted for fixed nav */
-                color: #333;
-                background-image: url(./images/sun-pattern.webp);
-                /* background-size: cover; Ensures the image covers the entire background */
-                background-attachment: fixed; /* Keeps the background fixed while scrolling */
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-                background-color: #f5f5f5;
-}
-
-                .header, .footer {
-                    background-color: #2A3F54;
-                    color: white;
-                    padding: 20px 0;
-                }
-                .header-content {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-top: 20px;
-                }
-                .header img {
-                    width: 150px;
-                    height: auto;
-                    border-radius: 8px;
-                }
-                .header-text {
-                    text-align: right;
-                }
-                .header button {
-                    margin-top: 10px;
-                    padding: 10px 20px;
-                    background-color: #ffffff;
-                    color: #2A3F54;
-                    border: none;
-                    cursor: pointer;
-                }
-        
-                /* Fixed Navigation Section */
-                .fixed-nav {
-                    position: fixed;
-                    top: 0;
-                    width: 100%;
-                    background-color: #2A3F54;
-                    color: white;
-                    z-index: 1000;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 10px 20px;
-                    box-shadow: 0 2px 4px rgba(157, 151, 151, 0.2);
-                }
-        
-                .fixed-nav .nav-content {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    width: 100%;
-                }
-        
-                .fixed-nav .nav-buttons {
-                    display: flex;
-                    gap: 15px;
-                    align-items: center;
-                }
-        
-                .fixed-nav button {
-                    padding: 10px 15px;
-                    background-color: transparent;
-                    color: white;
-                    border: 1px solid white;
-                    cursor: pointer;
-                    border-radius: 5px;
-                    transition: background-color 0.3s, color 0.3s;
-                }
-        
-                .fixed-nav button:hover {
-                    background-color: white;
-                    color: #2A3F54;
-                }
-        
-                .fixed-nav img {
-                    width: 50px;
-                    height: auto;
-                }
-        
-                .nav-content img {
-                    margin-left: auto;
-                }
-        
-                .footer {
-                    margin-top: auto; /* Pushes the footer to the bottom */
-                    text-align: center;
-                }
-        
-                .footer-links {
-                    margin-top: 10px;
-                }
-        
-                .footer-links a {
-                    color: white;
-                    margin: 0 15px;
-                    text-decoration: none;
-                }
-        
-                /* company-overview */
-                .company-overview {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    /* background-color: #fff; White background */
-                    border-radius: 20px;
-                    padding: 40px;
-                    position: relative;
-                    margin-bottom: 40px;
-                    overflow: hidden;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
-                    min-height: 80vh; /* Set height to 100% of the viewport */
-                }
-        
-                .company-overview h2 {
-                    font-size: 3em;
-                    font-weight: bold;
-                    color: #2A3F54; /* Dark blue for heading */
-                    margin-bottom: 10px;
-                }
-        
-                .company-overview p {
-                    font-size: 1.2em;
-                    color: #555; /* Slightly lighter color for text */
-                    line-height: 1.5;
-                }
-        
-                .content-wrapper {
-                     text-align: center;    
-                    /* max-width: 600px; */
-                    /* z-index: 2; Ensure text is above any graphic elements */
-                }
-        
-                /* Graphic Element Styling */
-                /* .graphic-element {
-                    position: absolute;
-                    top: -20px;
-                    right: -100px;
-                    width: 300px;
-                    height: 300px;
-                    background-color: #58D68D; /* Similar green color to your reference */
-                    /* border-radius: 50%;
-                    z-index: 1; /* Behind the text */
-            
-        
-                .company-overview::before {
-                    content: '';
-                    position: absolute;
-                    top: 50px;
-                    left: -120px;
-                    width: 200px;
-                    height: 200px;
-                    background-color: #3498DB; /* A blue circle for added visual design */
-                    border-radius: 50%;
-                    z-index: 0;
-                }
-        
-                /* About Us Content Styles */
-                .about-container1 {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 20px;
-                    line-height: 1.6;
-                }
-
-                /* General Styling for About Section */
-.about-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Vision and Mission Specific Styles */
-.vision-mission {
-    flex-direction: row-reverse; /* Positions image on the left and text on the right */
-    text-align: right; /* Align text to the right */
-}
-
-.vision-mission img {
-    max-width: 40%; /* Adjust width as needed */
-    margin-left: 20px; /* Space between image and text */
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.vision-mission h2, 
-.vision-mission p {
-    max-width: 55%; /* Adjust width as needed */
-}
-
-/* Other Sections Styling (No Change Needed) */
-.about-section img {
-    max-width: 55%; /* Default image width */
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.about-section p {
-    font-size: 1.2em;
-    color: #555;
-}
-
-.about-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.about-section ul li {
-    margin: 10px 0;
-}
-
-        
-                .about-section {
-                    background-color: white;
-                    padding: 20px;
-                    
-                    border-radius: 10px; /* Slightly more rounded corners */
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-                }
-        
-                .about-section h2 {
-                    color: #2A3F54;
-                    margin-bottom: 20px;
-                    font-size: 2em; /* Larger, more prominent heading */
-                    font-weight: bold; /* Bold text */
-                    text-align: center; /* Center the section heading */
-                }
-        
-                /* Team Section Styles */
-                .team-section {
-                    display: flex;
-                    gap: 40px;
-                    justify-content: center; /* Center the team section */
-                    flex-wrap: wrap;
-                }
-        
-                .team-member {
-                    flex: 1;
-                    max-width: 300px; /* Restrict maximum width for uniformity */
-                    text-align: center;
-                    background-color: #fff;
-                    padding: 20px;
-                    border-radius: 10px; /* More rounded corners */
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-                    margin-bottom: 20px;
-                    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-                }
-        
-                .team-member:hover {
-                    background-color: #f8f8f8; /* Slightly different light gray on hover */
-                    transform: scale(1.05); /* Slightly increase size on hover */
-                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
-                }
-        
-                .team-member img {
-                    width: 100%;
-                    max-width: 200px;
-                    height: auto;
-                    border-radius: 50%;
-                    margin-bottom: 15px;
-                    transition: transform 0.3s;
-                }
-        
-                .team-member:hover img {
-                    transform: scale(1.1); /* Slightly enlarge image on hover */
-                }
-        
-                .team-member h3 {
-                    margin: 10px 5px 5px;
-                    padding: 3%;
-                    font-size: 1.2em; /* Larger font size */
-                    font-weight: 600; /* Semi-bold text */
-                    color: #2A3F54; /* Consistent color with the header */
-                    text-align: center; /* Center the name text */
-                }
-        
-                .team-member p {
-                    color: #555; /* Slightly darker gray for better readability */
-                    font-size: 1em; /* Adjusted font size */
-                    margin: 30px; /* Remove default margin */
-                    text-align: center; /* Center the position text */
-                }
-
-
-                /* Meet Our Team Section with Background */
-.meet-our-team {
-    background-image: url('./images/ase.svg'); /* Path to the uploaded image */
-    background-size: cover; /* Ensure the image covers the whole section */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    padding: 40px 40px; /* Padding to give space for content */
-    color: #ffffff; /* Make text white for contrast */
-    border-radius: 20px; /* Optional: rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
-    margin-top: 30px;
-    cursor: auto;
+Can't create, edit or upload … Not enough storage. Get 30 GB of storage for ₹59.00 ₹15.00/month for 2 months.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ConcreteCraft provides premium ready-mix concrete solutions with unmatched quality and durability for construction projects.">
+    <title>ConcreteCraft - Premium Concrete Solutions</title>
     
-}
-
-/* Optional: Style adjustments for text and images within the section */
-.meet-our-team h2 {
-    color: #000000; /* White text for heading */
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.meet-our-team .team-section .team-member h3,
-.meet-our-team .team-section .team-member p {
-    color: #ffffff; /* White text for team members */
-}
-
-.meet-our-team .team-section .team-member img {
-    border: 4px solid #f0f0f0; /* Add white border around images */
-}
-
-        
-                /* Organization Structure Section */
-                .org-structure {
-                    text-align: center;
-                }
-        
-                .org-structure img {
-                    max-width: 60%;
-                    height: auto;
-                    margin-top: 30px;
-                }
-        
-                /* Dropdown Menu Styles */
-                .dropdown {
-                    position: relative;
-                    display: inline-block;
-                }
-        
-                .dropdown-content {
-                    display: none;
-                    position: absolute;
-                    background-color: #ffffff;
-                    min-width: 200px;
-                    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-                    z-index: 1;
-                    right: 0; /* Aligns to the right */
-                    border-radius: 5px;
-                    overflow: hidden;
-                }
-        
-                .dropdown-content a {
-                    color: #333;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    display: block;
-                    transition: background-color 0.3s;
-                }
-        
-                .dropdown-content a:hover {
-                    background-color: #f1f1f1;
-                }
-        
-                .dropdown:hover .dropdown-content {
-                    display: block;
-                }
-        
-                .dropdown:hover .dropbtn {
-                    background-color: #2A3F54;
-                }
-            
-
-                /* contact info Styles */
-                .contact-info {
-            background-image: url('./images/do\ it\ today\ img2.jpg'); /* Replace with your background image path */
-            background-size: cover; /* Adjusts the size of the background image */
-            background-position: center; /* Centers the background image */
-            background-repeat: no-repeat; /* Prevents repeating the background image */
-            color: #dedede; /* Text color for better contrast */
-            padding: 30px;
-            border-radius: 0;
-            box-shadow: 0 2px 4px rgba(102, 142, 168, 0.1);
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        :root {
+            --primary-color: #2A3F54;
+            --secondary-color: #fecd52;
+            --accent-color: #58D68D;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
         }
-
-       
-
-        .contact-info ul {
-            list-style-type: none;
-            padding: 0;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 70px;
+            background-color: var(--light-bg);
+            background-image: url('./images/sun-pattern.webp');
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
         }
-
-        .contact-info ul li {
-            margin: 10px 0;
+        
+        /* Logo Animation */
+        .animated-logo {
+            animation: floatAndPulse 4s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
-
-        .contact-info a {
-            color: #dedede; /* Color for links for better visibility */
+        
+        @keyframes floatAndPulse {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+                opacity: 1;
+            }
+        }
+        
+        .logo-animation {
+            transition: transform 0.5s ease;
+        }
+        
+        .logo-animation:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(180, 180, 180, 0.215), rgba(211, 210, 210, 0.215)), url('./images/background.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;   
+            margin-bottom: 40px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .hero-section .btn {
+            margin-top: 30px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* Services */
+        .service-card {
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-card img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .service-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .service-card .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Calculator */
+        .calculator-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .calculator-left {
+            background-color: #e9f5ff;
+            padding: 2rem;
+            flex: 1 1 60%;
+        }
+        
+        .calculator-right {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            flex: 1 1 40%;
+        }
+        
+        .shape-btn {
+            flex: 1;
+            margin: 0 5px;
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .shape-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Results */
+        .result-box {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        /* Contact */
+        .contact-info {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./images/do\ it\ today\ img2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h5 {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem 0 1.25rem;
+        }
+        
+        footer a {
+            color: white;
             text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-
-/* slider */
-body {
-    font-family: Arial, sans-serif;
-}
-
-.slider-container {
-    position: relative;
-    max-width: 800px; /* Increased width to accommodate text */
-    margin: auto;
-    overflow: hidden;
-    padding-bottom: 1%;
-}
-
-.slider {   
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-    display: flex;
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
-.slide img {
-    width: 60%;
-    height: auto;
-}
-
-.text-content {
-    width: 40%;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.text-content h5 {
-    margin: 0;
-    font-size: 1.5rem;
-    text-align: left;
-}
-
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    line-height: 40px;
-    text-align: center;
-}
-
-.prev {
-    left: 10px;
-    transform: translateY(-50%);
-    
-
-}
-
-.next {
-    right: 10px;
-    transform: translateY(-50%);
-}
-
-.concrete-texture-section {
-  background: url('concrete-texture.jpg'); /* Replace with the path to your image */
-  background-size: cover;
-  background-blend-mode: overlay;
-  background-color: rgba(255, 255, 255, 0.7); /* Light overlay */
-  padding: 60px 20px;
-  text-align: center;
-  position: relative;
-}
-
-.concrete-texture-section .content {
-  max-width: 800px;
-  margin: 0 auto;
-  color: #333;
-}
-
-.concrete-texture-section h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.concrete-texture-section p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-
-
-
-.abstract-shapes-section {
-  background: linear-gradient(to right, #ddd, #fff), url('abstract-shapes.png'); /* Replace with the path to your image */
-  background-blend-mode: overlay;
-  padding: 60px 20px;
-  text-align: center;
-  position: relative;
-}
-
-.abstract-shapes-section .content {
-  max-width: 800px;
-  margin: 0 auto;
-  color: #333;
-}
-
-.abstract-shapes-section h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.abstract-shapes-section p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-
-.minimalistic-illustration-section {
-  background: url('minimalistic-illustration.png'); /* Replace with the path to your image */
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.minimalistic-illustration-section .content {
-  max-width: 800px;
-  margin: 0 auto;
-  color: #333;
-}
-
-.minimalistic-illustration-section h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.minimalistic-illustration-section p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-
-.container {
-            width: 90%;
-            margin: auto;
-            padding: 20px 0;
-        }
-        .section {
-            padding: 40px 0;
-            background-color: #f9f9f9;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        .section h2 {
-            text-align: center;
-            color: #2A3F54;
-        }
-        .section p, .section ul {
-            width: 80%;
-            margin: 20px auto;
-            line-height: 1.6;
-        }
-        .why-choose-us {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 0;
-            flex-direction: row-reverse;
-        }
-        .why-choose-us img {
-            width: 45%;
-            border-radius: 8px;
-        }
-        .why-choose-us-text {
-            width: 45%;
-        }
-        .small-text {
-    font-size: 0.65em; /* Adjust this value to your preference */
-  }
-        .service-item {
-            display: flex;
-           JUSTIFY-CONTENT: SPACE-BETWEEN;
-            align-items: center;
-            margin: 20px 0;
-            padding: 40px 20px;
-        }
-        .service-item img {
-            width: 40%;
-            border-radius: 8px;
-        }
-        .service-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-        .service-text {
-            width: 50%;
-            padding: 0 20px;
-        }
-        .aal {
-
-        }
-
-        .container2 {
-            display: flex; /* Enable flexbox layout */
-            justify-content: space-between; /* Distribute space between items */
-            gap: 10px; /* Optional: space between sections */
-            background: lightskyblue;
-        }
-
-        .section {
-            flex: 1; /* Allow sections to grow equally */
-            padding: 20px; /* Add some padding */
-            border: 1px solid #ccc; /* Optional: border for visual distinction */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for visual effect */
-        }
-
-
-        .txt{
-            padding: inherit;
-    color: chocolate;
-    text-decoration: underline;
-    text-decoration-color: darkkhaki;
-    flex: auto;
-    text-decoration-style: double;
-    text-shadow: darkgrey;
-    text-size-adjust: 30px;
-
-        }
-
-        .txt{
-            padding: 10px 0;
-            margin: 0;
-    /* color: chocolate; */
-
-        }
-
-        .section p {
-            width: 80%;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .discription {
-            discription
+            transition: color 0.3s ease;
         }
         
-
-        /* kkkkk */
-.why-choose-section {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.why-choose-section h2 {
-    font-size: 24px;
-    color: #0c0c5d;
-    margin-bottom: 30px;
-}
-
-.features {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 200px;
-}
-
-.feature-item img {
-    width: 60px;
-    height: auto;
-    margin-bottom: 15px;
-}
-
-.feature-item p {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-    margin: 0;
-}   
-
-
-/* Ready-mix concrete section */
-.service-item {
-    width: 100%; /* Full width of the container */
-    margin: 20px 0; /* Vertical spacing between service items */
-    display: flex; /* Flexbox for image and text alignment */
-    align-items: center; /* Center-align items vertically */
-}
-
-.image-slider {
-    width: 50%; /* Slider takes half the width */
-    height: auto;
-    position: relative;
-    overflow: hidden; /* Hides overflow for slider effect */
-    margin-right: 20px; /* Space between slider and text */
-    border-radius: 5px; /* Rounded corners */
-}
-
-.slides {
-    display: flex; /* Display images in a row */
-    transition: transform 0.5s ease-in-out; /* Smooth slide transition */
-}
-
-.slides img {
-    width: 100%; /* Full width of the image slider */
-    height: auto;
-    object-fit: cover; /* Ensure image covers the container */
-    border-radius: 5px;
-}
-
-.service-text {
-    width: 50%; /* Text takes the remaining half of the container */
-    padding: 20px; /* Add padding inside the text container */
-    background-color: #f9f9f9; /* Light background color */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-}
-
-.txt {
-    font-size: 24px; /* Adjust heading size */
-    color: #2A3F54; /* Darker color for heading */
-    margin-bottom: 10px; /* Space below heading */
-}
-
-.description {
-    font-size: 16px; /* Standard text size */
-    color: #555; /* Slightly darker text for description */
-    line-height: 1.6; /* Better readability */
-    margin-bottom: 15px;
-}
-
-.service-text strong {
-    font-size: 16px;
-    color: #000;
-}
-
-.button-ss {
-    display: flex;
-    gap: 20px; /* Spacing between buttons */
-    margin-top: 20px; /* Space above buttons */
-}
-
-button#buy-btn {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button#buy-btn:hover {
-    background-color: #1ea532; /* Change color on hover */
-    transform: translateY(-2px); /* Slight lift effect on hover */
-}
-
-.pdf-button {
-    padding: 10px 20px;
-    background-color: #007BFF; /* Blue background */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.pdf-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-.executive {
-    background-color: #fff;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect for executives box */
-}
-
-.executive h4 {
-    margin: 0 0 5px 0;
-    color: #333; /* Dark color for name */
-}
-
-.executive p {
-    margin: 5px 0;
-    color: #555; /* Slightly lighter color for details */
-}
-
-.executive a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-.executive a:hover {
-    text-decoration: underline;
-}
-
-/* Mobile Responsiveness */
-@media screen and (max-width: 768px) {
-    .service-item {
-        flex-direction: column; /* Stack items vertically */
-    }
-
-    .image-slider,
-    .service-text {
-        width: 100%; /* Full width for both elements on small screens */
-    }
-
-    .image-slider {
-        margin-right: 0;
-        margin-bottom: 20px; /* Add space between image and text on mobile */
-    }
-}
-
-
+        footer a:hover {
+            color: var(--secondary-color) !important;
+        }
         
-
-            </style>
-        </head>
-        <body>
-
+        footer .social-icons a {
+            display: inline-block;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .display-4 {
+            font-size: 2.5rem;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e3246;
+            border-color: #1e3246;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-section {
+                padding: 80px 0;
+            }
             
-            <!-- Fixed Navigation Section -->
-            <div class="fixed-nav">
-                <div class="nav-content">
-                    <img src="./images/logo-transparent-png.png" alt="Logo Image" style="width: 250px; margin-left: 50px;"> <!-- Replace with your image path -->
-                    <div class="nav-buttons" style="margin-right: 80px;">
-                        <button onclick="window.location.href='#'">Home</button>
-                        <button onclick="window.location.href='./about.html'">About</button>
-                        <button onclick="window.location.href='./concrete-calculater.html'">Concrete Calculator</button>
-                        
-                                                <!-- Services Dropdown Menu -->
-                        <div class="dropdown">
-                            <button  onclick="window.location.href='./Services.html'">Services</button>
-                            <!-- class="dropbtn" -->
-                            <!-- <div class="dropdown-content">
-                                <a href="#">Ready Mix Concrete</a>
-                                <a href="#">Concrete Blocks</a>
-                                <a href="#">AAC Blocks</a>
-                                <a href="#">Geo Blocks</a>
-                            </div> -->
-                        </div>
-                    </div>  
-                </div>
-            </div>
-
-            <!-- Main Content Area -->
-            <div class="about-section company-overview container" style="margin-top: 2.5%;">
-                <div class="content-wrapper">
-                    <h2>Company Overview</h2>
-                    <p>ConcreteCraft is a premier provider of Readymix Concrete and other building materials. Our mission is to deliver high-quality concrete solutions that meet our customers' needs while upholding the highest standards of service, sustainability, and integrity.</p>
-                </div>
-                <div class="graphic-element"></div>
-                <img src="./images/asdew.jpg" style="border-radius: 15px; resize: calc(70vhs); " alt="">
-            </div>
-
-
-
-
-            <!-- Why Choose Us Section -->
-    <div class="container">
+            .display-4 {
+                font-size: 2rem;
+            }
+        }
         
-        <!-- Services Section -->
-        <h2>Discover Our Services</h2>
-        <div id="services" class="section" >
-            <div class="service-item ">
-                <img src="./images/concrete-delivery.jpg" alt="Concrete"> <!-- Replace with your image path -->
-                <div class="service-text">
-                    <h3 class="txt">Ready-mix concrete</h3>
-                    <h1 class="txt1">Concrete</h1>
-                    <p1 class="discription">Delivering premium-quality concrete with unmatched strength and durability for your construction needs.</p1>
-                </div>
-            </div>
-            <div class="service-item">
-                <img src="./images/3D-batching-plant-011.jpg" alt="Testing Lab"> <!-- Replace with your image path -->
-                <div class="service-text">
-                    <h3 class="txt">IN-HOUSE PROCESSES</h3>
-                    <h1 class="txt1">Testing Lab</h1>
-                    <p1 class="discription">In-house lab equipped with the latest technology to ensure quality and strength of materials.</p1>
-                </div>
-            </div>
-            <div class="service-item">
-                <img src="./images/truck-mixer.jpg" alt="Transit Mixer"> <!-- Replace with your image path -->
-                <div class="service-text">
-                    <h3 class="txt">Concrete TM Fleet</h3>
-                    <h1 class="txt1">Transit mixture</h1>
-                    <p1 class="discription">Efficient and reliable transit mixers delivering fresh, high-quality concrete to your project site, every time, Any Time.</p1>
-                </div>
-            </div>
-            <div class="service-item">
-                <img src="./images/pump.webp" alt="Concrete Pump"> <!-- Replace with your image path -->
-                <div class="service-text">
-                    <h3 class="txt">Swing shetter Concrete Pumps</h3>
-                    <h1 class="txt1">Concrete Pump </h1>
-                    <p1 class="discription">Precision concrete pumping with state-of-the-art Swing Setter pumps, ensuring efficient and accurate placement for every project <br><br>we provide pumps for placing concrete on slabs or elevated structures</p1>
-                </div>
-            </div>
-        </div>
-
-
-        
-<div class="">
- <!-- Ready-mix concrete -->
- <div class="service-item section">
-    <div class="image-slider">
-        <div class="slides">
-            <img src="./images/concrete-delivery.jpg" alt="Concrete">
-            <img src="./images/pump.webp" alt="Concrete">
-            <img src="./images/Stationary-concrete-pump-on-the-construction-site-01-1024x682.jpg" alt="Concrete">
-            <img src="./images/truck-mixer.jpg" alt="Concrete">
-        </div>
-    </div>
-    <div class="service-text">
-        <h1 class="txt">Ready-mix concrete</h1>     
-        <p class="description">At ConcreteCrafts, we specialize in providing high-quality Ready-Mix Concrete (RMC) for all your construction needs. As a trusted RMC plant, we supply premium concrete that is mixed to precise specifications, ensuring strength, durability, and consistency for every project.</p>
-        <br>
-        <p><strong>Price: </strong>₹ 3580  &nbsp; m³   &nbsp; (M-20)</p>
-        <p><strong>Price: </strong>₹ 3700  &nbsp; m³   &nbsp; (M-25)</p>
-        <p><strong>Price: </strong>₹ 3900  &nbsp; m³   &nbsp; (M-35)</p>
-        <div class="button-ss">
-            <button id="buy-btn">BUY</button>
-            <button id="buy-btn" onclick="window.location.href='./xx.html'">Concrete Calculator</button>
-            <!-- <button id="more-info-btn">More Info</button> -->
-            <a href="http://your-pdf-link.pdf" class="pdf-button">Open PDF</a>
-        </div>
-        <div class="">
-            <h2>Contact Us for Quick Assistance</h2>
-            <div class="">
-                <!-- <h3>Our Sales Executives</h3> -->
-                <div class="executive">
-                    <h4>Shivam Somwanshi</h4>
-                    <p>Phone: <a href="tel:+917744817803">+91 7744817803</a></p>
-                    <p>Email: <a href="info.concretecrafts@gmail.com">info.concretecrafts@gmail.com</a></p>
-                </div>
-            </div>
-        </div> 
-    </div>
-</div>
-</div>
-       
-
+        @media (max-width: 768px) {
+            .hero-section {
+                text-align: center;
+                padding: 60px 0;
+            }
             
-              
-
-
-        <br><br><br>
-        <div class="section why-choose-us">
-            <img src="./images/cc.jpg" alt="Why Choose Us Image"> <!-- Replace with your image path -->
-            <div class="why-choose-us-text">
-                <h2>Why Choose Us?</h2>
-                <p>Discover why ConcreteCraft is the trusted name in construction:</p>
-                <ul>
-                    <li>Custom concrete solutions</li>
-                    <li>Wide range of grades available</li>
-                    <li>Timely and reliable delivery</li>
-                    <li>State-of-the-art in-house testing lab</li>
-                    <li>Strict quality assurance processes</li>
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            .calculator-left, .calculator-right {
+                width: 100%;
+            }
+            
+            .service-card {
+                margin-bottom: 20px;
+            }
+            
+            .navbar-brand img {
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 50px 0;
+            }
+            
+            .display-4 {
+                font-size: 1.75rem;
+            }
+            
+            .shape-selection {
+                flex-direction: column;
+            }
+            
+            .shape-btn {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" aria-label="ConcreteCraft Home">
+                <img src="./images/logo-transparent-png.png" alt="ConcreteCraft Logo" width="180" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./concrete-calculater.html">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./Services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
                 </ul>
             </div>
         </div>
+    </nav>
 
-        <div class="why-choose-section">
-            <!-- <h2>Why Choose ConcreteCraft Services</h2> -->
-            <div class="features">
-                <div class="feature-item">
-                    <img src="./images/architect.png" alt="Concrete Truck">
-                    <p>Nanded's favorite concrete contractor</p>
-                </div>
-                <div class="feature-item">
-                    <img src="./images/rupee-indian.png" alt="Price Match">
-                    <p>We aim to beat any price in Nanded</p>
-                </div>
-                <div class="feature-item">
-                    <img src="./images/cement-truck.png" alt="Delivery">
-                    <p>Same day & next day deliveries</p>
-                </div>
-                <div class="feature-item">
-                    <img src="./images/profit.png" alt="Pay for Use">
-                    <p>Only pay for what you use</p>
-                </div>
-                <div class="feature-item">
-                    <img src="./images/cement.png" alt="Concrete Types">
-                    <p>All types of concrete delivered daily</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <!-- Animated Logo -->
+                    <div class="logo-animation mb-4">
+                        <img src="./images/logo-transparent1-png.png" alt="ConcreteCraft Logo" class="img-fluid animated-logo" width="240" height="120">
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3">Premium Concrete Solutions</h1>
+                    <p class="lead mb-4">Delivering high-quality ready-mix concrete with unmatched strength & durability for your construction needs.</p>
+                    <a href="#services" class="btn btn-primary btn-lg px-4">Our Services</a>
                 </div>
             </div>
-        </div><br><br>
-
-
-
-
-                <!-- Contact Information Section -->
-        <div class="about-section1 contact-info">
-            <h2>Contact Information</h2>
-            <p>If you have any questions or inquiries, feel free to reach out to us:</p>
-            <ul>
-                <li>Email: <a href="mailto:info.concretecrafts@gmaiil.com">info.concretecrafts@gmaiil.com</a></li>
-                <li>Phone: +91-7744817803</li>
-                <li>Address: ConcreteCraft, ITI Corner Nanded</li>
-            </ul>
         </div>
+    </section>
 
-            </div>
-
-            <!-- Footer -->
-            <div class="footer">
-                <p>&copy; 2024 ConcreteCraft. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Contact Us</a>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Company Overview -->
+        <section class="mb-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Company Overview</h2>
+                    <p class="lead mb-3">ConcreteCraft is a premier provider of Readymix Concrete and other building materials. Our mission is to deliver high-quality concrete solutions that meet our customers' needs while upholding the highest standards of service, sustainability, and integrity.</p>
+                    <p class="mb-4">Founded in 2024, we saw a need for reliable, durable, and sustainable concrete products, driving us to create a company that focuses on quality and customer satisfaction.</p>
+                    <a href="./about.html" class="btn btn-outline-primary">Learn More About Us</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./images/asdew.jpg" alt="ConcreteCraft Operations" class="img-fluid rounded shadow" width="600" height="400" loading="lazy">
                 </div>
             </div>
+        </section>
 
-            <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let sliders = document.querySelectorAll(".image-slider .slides");
+        <!-- Services -->
+        <section id="services" class="my-5 py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3">Our Services</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">We provide comprehensive concrete solutions tailored to meet your construction requirements</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card h-100">
+                        <img src="./images/concrete-delivery.jpg" class="card-img-top" alt="Ready-mix concrete" width="400" height="200" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold h5">ConcreteCraft Price List 🏗️</h3>
+                            <p class="card-text"><B>• M-10 = ₹ 3,600 /m³ <BR> • M-20 = ₹ 4,070 /m³<BR> • M-25 = ₹ 4,300 /m³ <BR> • M-30 = ₹ 4,500 /m³</B></p>
+                            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card h-100">
+                        <img src="./images/3D-batching-plant-011.jpg" class="card-img-top" alt="Testing Lab" width="400" height="200" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold h5">IN-HOUSE PROCESSES</h3>
+                            <p class="card-text">In-house lab equipped with the latest technology to ensure quality and strength of materials.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card h-100">
+                        <img src="./images/truck-mixer.jpg" class="card-img-top" alt="Transit Mixer" width="400" height="200" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold h5">Concrete TM Fleet</h3>
+                            <p class="card-text">Efficient and reliable transit mixers delivering fresh, high-quality concrete to your project site.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card h-100">
+                        <img src="./images/pump.webp" class="card-img-top" alt="Concrete Pump" width="400" height="200" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold h5">Concrete Pumps</h3>
+                            <p class="card-text">Precision concrete pumping with state-of-the-art Swing Setter pumps for efficient placement.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        sliders.forEach(function(slider) {
-            let images = slider.children;
-            let index = 0;
-            let totalImages = images.length;
+        <!-- Calculator Preview -->
+        <section class="my-5 py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Concrete Calculator</h2>
+                    <p class="mb-3">Use our concrete calculator to determine exactly how much concrete you need for your project. Get instant volume calculations and cost estimates.</p>
+                    <ul class="mb-4">
+                        <li class="mb-2">Calculate for square, rectangular, or circular areas</li>
+                        <li class="mb-2">Multiple concrete grades available</li>
+                        <li class="mb-2">Instant cost estimation</li>
+                        <li>Save and print your calculations</li>
+                    </ul>
+                    <a href="./concrete-calculater.html" class="btn btn-primary">Try Our Calculator</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="calculator-container shadow-lg">
+                        <div class="calculator-left">
+                            <h3 class="fw-bold mb-4 text-primary h4">Volume Calculator</h3>
+                            <div class="shape-selection d-flex flex-wrap justify-content-between mb-4">
+                                <button class="btn shape-btn active" data-shape="rectangle" aria-label="Calculate for rectangle">
+                                    <i class="fas fa-square me-2" aria-hidden="true"></i> Square
+                                </button>
+                                <button class="btn shape-btn" data-shape="triangle" aria-label="Calculate for triangle">
+                                    <i class="fas fa-play me-2" aria-hidden="true"></i> Triangle
+                                </button>
+                                <button class="btn shape-btn" data-shape="circle" aria-label="Calculate for circle">
+                                    <i class="fas fa-circle me-2" aria-hidden="true"></i> Circle
+                                </button>
+                            </div>
+                            
+                            <!-- Rectangle Inputs -->
+                            <div class="dimension-inputs" id="rectangle-inputs">
+                                <div class="mb-3">
+                                    <label for="length" class="form-label fw-bold">Length (meters)</label>
+                                    <input type="number" class="form-control dimension-input py-2" id="length" placeholder="Enter length" step="0.01" min="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="width" class="form-label fw-bold">Width (meters)</label>
+                                    <input type="number" class="form-control dimension-input py-2" id="width" placeholder="Enter width" step="0.01" min="0">
+                                </div>
+                            </div>
+                            
+                            <!-- Circle Inputs (hidden by default) -->
+                            <div class="dimension-inputs d-none" id="circle-inputs">
+                                <div class="mb-3">
+                                    <label for="radius" class="form-label fw-bold">Radius (meters)</label>
+                                    <input type="number" class="form-control dimension-input py-2" id="radius" placeholder="Enter radius" step="0.01" min="0">
+                                </div>
+                            </div>
+                            
+                            <!-- Common Depth Input -->
+                            <div class="mb-4">
+                                <label for="depth" class="form-label fw-bold">Depth (meters)</label>
+                                <input type="number" class="form-control dimension-input py-2" id="depth" placeholder="Enter depth" step="0.01" min="0">
+                            </div>
+                            
+                            <!-- Volume Result -->
+                            <div class="result-box">
+                                <h4 class="fw-bold mb-2 h5">Volume Calculation</h4>
+                                <p class="mb-0 fs-5">Volume: <span id="volume-result" class="fw-bold text-primary">0.00</span> m³</p>
+                            </div>
+                        </div>
+                        <div class="calculator-right">
+                            <h3 class="fw-bold mb-4 h4">Cost Estimation</h3>
+                            <div class="mb-3">
+                                <label for="concrete-grade" class="form-label fw-bold">Concrete Grade</label>
+                                <select class="form-select py-2" id="concrete-grade">
+                                    <option value="3600">M-10 (₹3600/m³)</option>
+                                    <option value="4070" selected>M-20 (₹4070/m³)</option>
+                                    <option value="4300">M-25 (₹4300/m³)</option>
+                                    <option value="4500">M-30 (₹4500/m³)</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="quantity" class="form-label fw-bold">Quantity</label>
+                                <input type="number" class="form-control py-2" id="quantity" value="1" min="1">
+                            </div>
+                            
+                            <!-- Cost Result -->
+                            <div class="result-box">
+                                <h4 class="fw-bold mb-2 h5">Cost Estimate</h4>
+                                <p class="mb-0 fs-5">Total Cost: <span id="cost-result" class="fw-bold text-primary">₹0.00</span></p>
+                                <small class="text-muted">(18% GST included)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            setInterval(function() {
-                index = (index + 1) % totalImages;
-                slider.style.transform = `translateX(-${index * 100}%)`;
-            }, 3000); // Change image every 3 seconds
-        });
-    });
+        <!-- Why Choose Us -->
+        <section class="my-5 py-4 bg-light rounded">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">Why Choose ConcreteCraft?</h2>
+                    <p class="lead mx-auto" style="max-width: 700px;">We stand out from the competition with our commitment to excellence</p>
+                </div>
+                <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                        <div class="p-4 bg-white rounded shadow-sm h-100">
+                            <i class="fas fa-check-circle fa-3x mb-3" style="color: var(--accent-color);" aria-hidden="true"></i>
+                            <h3 class="fw-bold h4">Quality Assurance</h3>
+                            <p class="mb-0">State-of-the-art in-house testing lab ensures consistent quality and strength.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 bg-white rounded shadow-sm h-100">
+                            <i class="fas fa-truck-fast fa-3x mb-3" style="color: var(--accent-color);" aria-hidden="true"></i>
+                            <h3 class="fw-bold h4">Reliable Delivery</h3>
+                            <p class="mb-0">Timely deliveries with our modern fleet of transit mixers.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 bg-white rounded shadow-sm h-100">
+                            <i class="fas fa-rupee-sign fa-3x mb-3" style="color: var(--accent-color);" aria-hidden="true"></i>
+                            <h3 class="fw-bold h4">Competitive Pricing</h3>
+                            <p class="mb-0">We aim to beat any price in Nanded while maintaining quality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    // Redirects the user to the 'buy' page when BUY button is clicked
-    document.getElementById('buy-btn').addEventListener('click', function() {
-        window.location.href = 'buy-page.html'; // Replace with the actual URL of your buy page
-    });
+        <!-- Contact -->
+        <section id="contact" class="my-5">
+            <div class="contact-info rounded shadow">
+                <h2 class="fw-bold mb-4">Contact Information</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h3 class="h5"><i class="fas fa-envelope me-2" aria-hidden="true"></i> Email</h3>
+                        <p class="mb-0">info.concretecrafts@gmail.com</p>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h3 class="h5"><i class="fas fa-phone me-2" aria-hidden="true"></i> Phone</h3>
+                        <p class="mb-0">+91 7744817803</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="h5"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i> Address</h3>
+                        <p class="mb-0">ConcreteCraft, ITI Corner Nanded</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <img src="./images/logo-transparent-png.png" alt="ConcreteCraft Logo" width="180" height="50" loading="lazy">
+                    <p class="mt-2 mb-0">Premium concrete solutions for all your construction needs.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="h5 mb-3">Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="./about.html" class="text-white">About Us</a></li>
+                        <li class="mb-2"><a href="./concrete-calculater.html" class="text-white">Calculator</a></li>
+                        <li><a href="./Services.html" class="text-white">Services</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="h5 mb-3">Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Twitter"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Instagram"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="LinkedIn"><i class="fab fa-linkedin-in fa-lg" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2024 ConcreteCraft. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white me-3">Terms of Service</a>
+                    <a href="#contact" class="text-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-
-                let slideIndex = 0;
-
-function showSlides() {
-    const slides = document.querySelectorAll('.slide');
-    slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${(index - slideIndex) * 100}%)`;
-    });
-}
-
-document.querySelector('.prev').addEventListener('click', () => {
-    slideIndex = (slideIndex > 0) ? slideIndex - 1 : document.querySelectorAll('.slide').length - 1;
-    showSlides();
-});
-
-document.querySelector('.next').addEventListener('click', () => {
-    slideIndex = (slideIndex < document.querySelectorAll('.slide').length - 1) ? slideIndex + 1 : 0;
-    showSlides();
-});
-
-// Initialize slider
-showSlides();
-
-
-
-
-            </script>
-        </body>
-        </html>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+    <!-- Calculator Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all elements
+            const shapeBtns = document.querySelectorAll('.shape-btn');
+            const dimensionInputs = document.querySelectorAll('.dimension-input');
+            const rectangleInputs = document.getElementById('rectangle-inputs');
+            const circleInputs = document.getElementById('circle-inputs');
+            const concreteGrade = document.getElementById('concrete-grade');
+            const quantityInput = document.getElementById('quantity');
+            const volumeResult = document.getElementById('volume-result');
+            const costResult = document.getElementById('cost-result');
+            
+            // Current shape (default is rectangle)
+            let currentShape = 'rectangle';
+            
+            // Shape button click handler
+            shapeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    shapeBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Get the shape from data attribute
+                    currentShape = this.dataset.shape;
+                    
+                    // Show/hide appropriate inputs
+                    if (currentShape === 'circle') {
+                        rectangleInputs.classList.add('d-none');
+                        circleInputs.classList.remove('d-none');
+                    } else {
+                        rectangleInputs.classList.remove('d-none');
+                        circleInputs.classList.add('d-none');
+                    }
+                    
+                    // Recalculate
+                    calculate();
+                });
+            });
+            
+            // Input change handler for all relevant inputs
+            dimensionInputs.forEach(input => {
+                input.addEventListener('input', calculate);
+            });
+            
+            concreteGrade.addEventListener('change', calculate);
+            quantityInput.addEventListener('input', calculate);
+            
+            // Calculation function
+            function calculate() {
+                // Get depth value (common to all shapes)
+                const depth = parseFloat(document.getElementById('depth').value) || 0;
+                
+                let volume = 0;
+                
+                // Calculate based on shape
+                if (currentShape === 'rectangle') {
+                    const length = parseFloat(document.getElementById('length').value) || 0;
+                    const width = parseFloat(document.getElementById('width').value) || 0;
+                    volume = length * width * depth;
+                } 
+                else if (currentShape === 'triangle') {
+                    const length = parseFloat(document.getElementById('length').value) || 0;
+                    const width = parseFloat(document.getElementById('width').value) || 0;
+                    volume = (length * width * depth) / 2;
+                }
+                else if (currentShape === 'circle') {
+                    const radius = parseFloat(document.getElementById('radius').value) || 0;
+                    volume = Math.PI * Math.pow(radius, 2) * depth;
+                }
+                
+                // Get price and quantity
+                const pricePerCubicMeter = parseFloat(concreteGrade.value) || 0;
+                const quantity = parseFloat(quantityInput.value) || 1;
+                
+                // Calculate total cost (including 18% GST)
+                const totalCost = volume * pricePerCubicMeter * quantity * 1.18;
+                
+                // Update results
+                volumeResult.textContent = volume.toFixed(2);
+                costResult.textContent = '₹' + totalCost.toFixed(2);
+            }
+            
+            // Initialize calculator
+            calculate();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }); 
+    </script>
+</body>
+</html>
