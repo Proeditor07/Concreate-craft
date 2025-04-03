@@ -1,720 +1,547 @@
+Can't create, edit or upload … Not enough storage. Get 30 GB of storage for ₹59.00 ₹15.00/month for 2 months.
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConcreteCraft</title>
+    <title>Concrete Calculator - ConcreteCraft</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* Global Styles */
+        :root {
+            --primary-color: #2A3F54;
+            --secondary-color: #fecd52;
+            --accent-color: #58D68D;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background-image: url(./images/sun-pattern.webp);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 70px;
+            background-color: var(--light-bg);
+            background-image: url('./images/sun-pattern.webp');
             background-attachment: fixed;
-            margin: 0;
-            padding-top: 60px; /* Adjusted for fixed nav */
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
         }
-        .header, .footer {
-            background-color: #2A3F54;
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .calculator-hero {
+            background: linear-gradient(rgba(180, 180, 180, 0.215), rgba(211, 210, 210, 0.215)), url('./images/background.png');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 20px 0;
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .header img {
-            width: 150px;
-            height: auto;
-            border-radius: 8px;
-        }
-        .header-text {
-            text-align: right;
-        }
-        .header button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #ffffff;
-            color: #2A3F54;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Fixed Navigation Section */
-        .fixed-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #2A3F54;
-            color: white;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(157, 151, 151, 0.2);
-        }
-
-        .fixed-nav .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .fixed-nav .nav-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .fixed-nav button {
-            padding: 10px 15px;
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .fixed-nav button:hover {
-            background-color: white;
-            color: #2A3F54;
-        }
-
-        .fixed-nav img {
-            width: 50px;
-            height: auto;
-        }
-
-        .nav-content img {
-            margin-left: auto;
-        }
-
-        .footer {
-            margin-top: auto; /* Pushes the footer to the bottom */
+            padding: 100px 0;
+            margin-bottom: 40px;
             text-align: center;
         }
-
-        .footer-links {
-            margin-top: 10px;
-        }
-
-        .footer-links a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-
-        /* Dropdown Menu Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #ffffff;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            right: 0; /* Aligns to the right */
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropbtn {
-            background-color: white;
-            color: #2A3F54;
-        }
-
-
-                /* Calculator Styles */
-                .calculator-container {
+        
+        /* Calculator Styles */
+        .calculator-container {
             display: flex;
+            flex-wrap: wrap;
             background-color: #f7f7f7;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            margin: 3% 10%;
-            overflow: hidden;   
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin: 2rem auto;
+            overflow: hidden;
+            max-width: 1200px;   
+            transition: all 0.3s ease;
+        }
+
+        .calculator-container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
         .calculator-left, .calculator-right {
-            padding: 20px;
+            padding: 2.5rem;
+            box-sizing: border-box;
         }
 
         .calculator-left {
-            width: 60%;
+            flex: 1;
+            min-width: 300px;
             background-color: #d4ecff;
+            border-right: 1px solid #eee;
         }
 
         .calculator-right {
-            width: 40%;
+            flex: 1;
+            min-width: 300px;
             background-color: #fecd52;
+
         }
 
-        .container-why-we1 {
-            padding: 10px;
-            border-radius: 25px;
-            box-shadow: 0 0 15px rgba(97, 97, 97, 0.071);
-            margin: 5%;
+        .calculator-section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
         }
 
-        .container-why-we {
-            padding: 20px;
-            border-radius: 25px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            margin: 5%;
-            background-color: seashell;
-        }
-
-        .spacebtn {
-            display: flex;
-            border-radius: 25px;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
+        .calculator-section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
         }
 
         .shape-selection {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .shape {
-            width: 100px;
+            width: 110px;
             text-align: center;
             cursor: pointer;
+            padding: 15px 10px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .shape:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
 
         .shape div {
             margin: 0 auto 10px auto;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .shape.square div {
             width: 50px;
             height: 50px;
-            background-color: #007bff;
+            background-color: var(--primary-color);
         }
-
-        
 
         .shape.triangle div {
             width: 0;
             height: 0;
             border-left: 25px solid transparent;
             border-right: 25px solid transparent;
-            border-bottom: 50px solid #007bff;
+            border-bottom: 50px solid var(--primary-color);
         }
 
         .shape.circle div {
             width: 50px;
             height: 50px;
-            background-color: #007bff;
+            background-color: var(--primary-color);
             border-radius: 50%;
+        }
+
+        .shape.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
         .shape.selected div {
-            background-color: #ff6347;
-        }
-
-        .input-fields label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .input-fields input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            margin-bottom: 20px;
-        }
-
-        .toggle-label {
-            margin-right: 10px;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
             background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+            border-bottom-color: white;
         }
 
-        input:checked + .slider {
-            background-color: #2196F3;
+        .shape.selected.square div {
+            background-color: white;
         }
 
-        input:checked + .slider:before {
-            transform: translateX(26px);
+        .shape.selected.triangle div {
+            border-bottom-color: white;
+        }
+
+        .shape.selected.circle div {
+            background-color: white;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group.hidden {
+            display: none;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 63, 84, 0.1);
+        }
+
+        .input-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232A3F54' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
         }
 
         .result {
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
+            margin-top: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            font-weight: 500;
+            border: 1px solid #eee;
         }
 
-        .price-section label {
-            display: block;
-            margin-bottom: 5px;
+        .result p {
+            margin: 0;
+            font-size: 18px;
         }
 
-        .price-section select, .price-section input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+        .result span {
+            font-weight: 600;
+            color: var(--primary-color);
         }
 
-        .price-section p {
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-
-        #result-print {
-    display: block !important;
-    visibility: visible !important;
-}
-
-/* Reset basic styles */
-.item-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.item-list li {
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-/* Hover effect for each item box */
-.item-list li:hover {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.item-details {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-}
-
-.item-details span {
-    margin: 4px 0;
-    color: #333;
-    font-size: 15px;
-}
-
-.item-name {
-    font-size: 18px;
-    margin-bottom: 8px;
-    border: none;
-    background: none;
-    font-weight: bold;
-    width: 100%;
-    outline: none;
-    color: #2A3F54;
-    transition: color 0.3s ease;
-}
-
-/* Item name hover effect */
-.item-name:hover {
-    color: #007bff;
-}
-
-.delete-button {
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Delete button hover effect */
-.delete-button:hover {
-    background-color: #e55347;
-    transform: scale(1.05);
-}
-
-/* Center-aligned button container */
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-/* Primary button styles */
-button {
-  background-color: #007bff;
-  border: none;
-  color: white;
-  padding: 14px 28px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Hover and active effects for buttons */
-button:hover {
-  background-color: #00b327;
-  transform: scale(1.05);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-/* Style for each item box */
-.item-box {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 15px 0;
-    background-color: #ffffff;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.item-box p {
-    margin: 0;
-    font-size: 15px;
-}
-
-.item-box .delete-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* Hover effect for the delete button */
-.item-box .delete-button:hover {
-    background-color: #e53935;
-}
-
-
-/* button for clear and print*/
-
-/* Style for the button container */
-#btnP {
-    display: flex;
-    justify-content: space-between; /* Space buttons evenly between the two sides */
-    align-items: center; /* Center buttons vertically */
-    padding: 20px; /* Add more padding around the container */
-}
-
-/* Style for the buttons */
-#btnP button {
-    padding: 12px 24px; /* Add padding inside the buttons */
-    border: none; /* Remove default border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #007bff; /* Button background color */
-    color: #fff; /* Button text color */
-    font-size: 16px; /* Font size for button text */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s; /* Smooth background color transition */
-    margin: 0 20px; /* Add space between buttons */
-}
-
-/* Hover effect for buttons */
-#btnP button:hover {
-    background-color: #0056b3; /* Darker background color on hover */
-}
-
-/* Specific style for the "Clear All" button (optional) */
-#clear-all {
-    background-color: #dc3545; /* Red background color */
-}
-
-#clear-all:hover {
-    background-color: #c82333; /* Darker red on hover */
-}
-
-#result-section{
-    padding: 0 30px;
-    margin: 30px;
-}
-
-/* Style for the button container */
-#btnP {
-    display: flex;
-    justify-content: space-between; /* Space buttons evenly between the two sides */
-    align-items: center; /* Center buttons vertically */
-    padding: 20px; /* Add more padding around the container */
-}
-
-/* Style for the buttons */
-#btnP button {
-    padding: 12px 24px; /* Add padding inside the buttons */
-    border: none; /* Remove default border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #007bff; /* Button background color */
-    color: #fff; /* Button text color */
-    font-size: 16px; /* Font size for button text */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s; /* Smooth background color transition */
-    margin: 0 10px; /* Add space between buttons */
-}
-
-/* Hover effect for buttons */
-#btnP button:hover {
-    background-color: #0056b3; /* Darker background color on hover */
-}
-
-/* Specific style for the "Clear All" button (optional) */
-#clear-all {
-    background-color: #dc3545; /* Red background color */
-}
-
-#clear-all:hover {
-    background-color: #c82333; /* Darker red on hover */
-}
-
-
-/* contact info Styles */
-.contact-info {
-            background-image: url(./images/www.jpg); /* Replace with your background image path */
-            background-size: cover; /* Adjusts the size of the background image */
-            background-position: center; /* Centers the background image */
-            background-repeat: no-repeat; /* Prevents repeating the background image */
-            color: #dedede; /* Text color for better contrast */
-            padding: 30px;
-            border-radius: 0;
-            box-shadow: 0 2px 4px rgba(102, 142, 168, 0.1);
-        }
-
-       
-
-        .contact-info ul {
-            list-style-type: none;
+        /* Item List Styles */
+        .item-list ul {
+            list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .contact-info ul li {
-            margin: 10px 0;
+        .item-list li {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .contact-info a {
-            color: #dedede; /* Color for links for better visibility */
+        .item-list li:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .item-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .item-details span {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 15px;
+        }
+
+        .item-details strong {
+            color: var(--primary-color);
+        }
+
+        .delete-button {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .delete-button:hover {
+            background-color: #e55347;
+            transform: scale(1.05);
+        }
+
+        /* Button Styles */
+        #btnP {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        #btnP button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #btnP button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #clear-all {
+            background-color: #dc3545;
+        }
+
+        #clear-all:hover {
+            background-color: #c82333;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #1d2e3f;
+            border-color: #1d2e3f;
+        }
+
+        /* Contact */
+        .contact-info {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./images/do\ it\ today\ img2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h5 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem 0 1.25rem;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: white;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        footer .social-icons a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color) !important;
+            transform: translateY(-3px);
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
+        /* Price section styles */
+        .price-section h4 {
+            margin-top: 15px;
+            color: var(--primary-color);
         }
 
-
-        .about-section1{
-            background-size: cover; /* Adjusts the size of the background image */
-            background-position: center; /* Centers the background image */
-            background-repeat: no-repeat; /* Prevents repeating the background image */
+        .price-section h4 strong {
+            color: #333;
         }
 
+        /* Order form styles */
+        #order-form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+            border: 1px solid #eee;
+        }
 
+        #order-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
 
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            .calculator-left, .calculator-right {
+                width: 100%;
+            }
+            
+            .shape-selection {
+                justify-content: center;
+            }
 
-        /* Styling the form container */
-#order-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-}
+            .calculator-left {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
 
-/* Headings */
-#order-form h3 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
+            .item-details {
+                flex-direction: column;
+                gap: 5px;
+                margin-bottom: 10px;
+            }
 
-/* Labels */
-#order-form label {
-    display: block;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
+            .item-details span {
+                margin-right: 0;
+                display: block;
+            }
+        }
 
-/* Inputs and Select */
-#order-form input[type="text"],
-#order-form input[type="tel"],
-#order-form input[type="date"],
-#order-form select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
+        @media (max-width: 576px) {
+            .calculator-left, .calculator-right {
+                padding: 1.5rem;
+            }
 
-/* Submit button */
-#submit-order {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
+            .shape {
+                width: 80px;
+                padding: 10px 5px;
+            }
 
-/* Hover effect on button */
-#submit-order:hover {
-    background-color: #45a049;
-}
+            .shape div {
+                width: 40px;
+                height: 40px;
+            }
 
-/* Adding some space below the select */
-#order-form select {
-    margin-bottom: 20px;
-}
-
-
-
-
-
-
-
+            .shape.triangle div {
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-bottom: 40px solid var(--primary-color);
+            }
+            #btn-space {
+                display: flex;
+                flex-direction: row;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Fixed Navigation Section -->
-    <div class="fixed-nav">
-        <div class="nav-content">
-            <img src="./images/logo-transparent-png.png" alt="Logo Image" style="width: 250px; margin-left: 50px;"> <!-- Replace with your image path -->
-            <div class="nav-buttons" style="margin-right: 80px;">
-                <button onclick="window.location.href='./index.html'">Home</button>
-                <button onclick="window.location.href='./about.html'">About</button>
-                <button onclick="window.location.href='#'">Concrete Calculator</button>
-                
-                <!-- Services Dropdown Menu -->
-<div class="dropdown">
-    <button  onclick="window.location.href='./Services.html'">Services</button>
-    <!-- class="dropbtn"
-    <div class="dropdown-content">
-        <a href="#">Ready Mix Concrete</a>
-        <a href="#">Concrete Blocks</a>
-        <a href="#">AAC Blocks</a>
-        <a href="#">Geo Blocks</a> -->
-    </div>
-</div>
-                </div>
-            </div>  
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="ConcreteCraft Home">
+                <img src="./images/logo-transparent-png.png" alt="ConcreteCraft Logo" width="180" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="concrete-calculater.html" aria-current="page">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Main Content Area -->
-    <div style="flex-grow: 1;">
-        <!-- Main Content Area -->
-    <div style="flex-grow: 1;">
-        <!-- Concrete Volume Calculator Section -->
+    <!-- Hero Section -->
+    <section class="calculator-hero">
+        <div class="container">
+            <h1>Concrete Calculator</h1>
+            <p>Calculate exactly how much concrete you need for your project in Nanded with our easy-to-use calculator tool</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Calculator Container -->
         <div class="calculator-container">
             <div class="calculator-left">
-                <h2>Concrete Volume Calculator</h2>
+                <h2 class="calculator-section-title">Concrete Volume Calculator</h2>
                 <div class="shape-selection">   
                     <div class="shape square selected" data-shape="square">
                         <div></div>
-                        <span>Square/Rectangle</span>
+                        <span>Square</span>
                     </div>
                     <div class="shape triangle" data-shape="triangle">
                         <div></div>
@@ -725,514 +552,633 @@ button:active {
                         <span>Circle</span>
                     </div>
                 </div>
-                <div>toggel</div>
+                
                 <div class="input-fields">
-                    <label for="length">Length:</label>
-                    <input type="number" id="length" placeholder="Enter length (meters)" disabled>
-                    <label for="width">Width:</label>
-                    <input type="number" id="width" placeholder="Enter width (meters)" disabled>
-                    <label for="radius">Radius:</label>
-                    <input type="number" id="radius" placeholder="Enter radius (meters)">
-                    <label for="angle">Angle:</label>
-                    <input type="number" id="angle" placeholder="Enter angle (degrees)" value="360">
-                    <label for="depth">Depth:</label>
-                    <input type="number" id="depth" placeholder="Enter depth (meters)">
+                    <div class="input-group" id="length-group">
+                        <label for="length">Length (meters):</label>
+                        <input type="number" id="length" placeholder="Enter length">
+                    </div>
+                    
+                    <div class="input-group" id="width-group">
+                        <label for="width">Width (meters):</label>
+                        <input type="number" id="width" placeholder="Enter width">
+                    </div>
+                    
+                    <div class="input-group hidden" id="radius-group">
+                        <label for="radius">Radius (meters):</label>
+                        <input type="number" id="radius" placeholder="Enter radius">
+                    </div>
+                    
+                    <div class="input-group hidden" id="angle-group">
+                        <label for="angle">Angle (degrees):</label>
+                        <input type="number" id="angle" placeholder="Enter angle" value="360">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="depth">Depth (meters):</label>
+                        <input type="number" id="depth" placeholder="Enter depth">
+                    </div>
+                    
+                    
                 </div>
                 <div class="result">
-                    <p>Volume: <span id="volume-output">0</span> m³</p>
+                    <p>Calculated Volume: <span id="volume-output">0</span> m³</p>
                 </div>
             </div>
 
             <div class="calculator-right">
-                <h2>Cost Estimation</h2>
+                <h2 class="calculator-section-title">Cost Estimation</h2>
                 <div class="price-section">
-                    <label for="price-per-cubic-meter">Price per Cubic Meter:</label>
-                    <select id="price-per-cubic-meter">
-                        <option value="0" disabled selected>Select Concrete Grade</option>
-                        <option value="4400">Grade M-10 (₹ 4400) per m³</option>
-                        <option value="4650">Grade M-20 (₹ 4650) per m³</option>
-                        <option value="4800">Grade M-25 (₹ 4800) per m³</option>
-                        <option value="4999">Grade M-30 (₹ 4999) per m³</option>
-                        <option value="5200">Grade M-35 (₹ 5200) per m³</option>
-                        <option value="5400">Grade M-40 (₹ 5400) per m³</option>
-                    </select>
-            
-                    <!-- Hidden Inputs for delivery charge and additional fees -->
-                    <label hidden for="delivery-charge"></label>
-                    <input hidden type="number" id="delivery-charge" placeholder="Enter delivery charge" value="0">
-                    <label hidden for="additional-fees"></label>
-                    <input hidden type="number" id="additional-fees" placeholder="Enter additional fees" value="0">
+                    <div class="input-group">
+                        <label for="price-per-cubic-meter">Concrete Grade:</label>
+                        <select id="price-per-cubic-meter">
+                            <option value="0" disabled selected>Select Concrete Grade</option>
+                            <option value="3600">Grade M-10 (₹ 3600) per m³</option>
+                            <option value="4070">Grade M-20 (₹ 4070) per m³</option>
+                            <option value="4300">Grade M-25 (₹ 4300) per m³</option>
+                            <option value="4500">Grade M-30 (₹ 4500) per m³</option>
+                        </select>
+                    </div>
                         
-                    <div class="price-section">
-                        <label for="multiplier">No of items (NOS):</label>
-                        <input type="number" id="multiplier" value="1" min="1" >
+                    <div class="input-group">
+                        <label for="multiplier">Number of Items (NOS):</label>
+                        <input type="number" id="multiplier" value="1" min="1">
                     </div>
 
-                    <section class="price-section"></section>
+                    <div class="input-group">
                         <label for="item-name">Item Name:</label>
-                        <input type="text" id="item-name" placeholder="Enter item name &nbsp;&nbsp;( ie. Foundation, coloum, beam, slab) ">
-                        <div class="volume-input">
-                            <label for="manual-volume">Manual Volume (m³):</label>
-                            <input type="number" id="manual-volume" placeholder="Enter volume (m³)" min="0">
-                        </div>
-                        
-                    </section>
+                        <input type="text" id="item-name" placeholder="e.g., Foundation, column, beam, slab">
+                    </div>
                     
-                    <button id="add-item-btn">Add Item</button>
-                    
+
+                    <div class="input-group">
+                        <label for="manual-volume"><br>Or Enter Volume Directly (m³):</label>
+                        <input type="number" id="manual-volume" placeholder="Enter volume" min="0">
+                    </div>
+
+
+                    <button id="add-item-btn" class="btn btn-primary w-100 mt-3">
+                        <i class="fas fa-plus-circle"></i> Add Item
+                    </button>
+
                 </div>
 
-                <br />
-                <p>18% GST included.</p>
-                <h4><strong>Total Cost for one item: ₹ <span id="total-cost-single">0</span></strong></h4>
-                <h4><strong>All Price (for all items): ₹ <span id="final-price">0</span></strong</h4>
+                <div class="price-section mt-4">
+                    <div class="result">
+                        <p>18% GST included in all prices</p>
+                        <p>Total Cost for one item: ₹ <span id="total-cost-single">0</span></p>
+                        <p>Total Price for all items: ₹ <span id="final-price">0</span></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-
-    <!-- Separate Section for Printing -->
-    <section id="result-section" >
-        <h2>Items Summary</h2>
-        <div id="result-print">
-            <div class="item-list">
-                <!-- Items will be dynamically added here -->
-                <ul id="item-list"></ul>
-            </div>
-
-            <!-- Totals section -->
-            <div id="totals">
-                <p>Total Volume: <span id="total-volume">0</span> m³</p>
-                <p>Final Price for All Items: ₹<span id="final-price-all-items">0</span></p>
-            </div>
-
-           
-        </div>
-
-        
-        <div id="btnP">
-            <div>
-                <button id="order-btn">Order Now</button>
-                <button id="print-btn">Print</button>
-            </div>
-            
-            <button id="clear-all">Clear All</button>
-        </div>
-
-        <!-- Print Button -->
-
-        <div id="order-form" style="display: none;">
-            <h3>Order Form</h3>
-            <label for="customer-name">Name:</label>
-            <input type="text" id="customer-name" required><br>
-            
-            <label for="customer-mobile">Mobile No:</label>
-            <input type="tel" id="customer-mobile" required><br>
-            
-            <label for="customer-address">Address:</label>
-            <input type="text" id="customer-address" required><br>
-            
-            <label for="delivery-date">Delivery Date:</label>
-            <input type="date" id="delivery-date" required><br>
-            
-            <label for="need-pump">Need Pump?</label>
-            <select id="need-pump"><br>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            
-            <label for="company-name">Company Name (if applicable):</label>
-            <input type="text" id="company-name">
-            
-            <button id="submit-order">Submit Order</button>
         </div>
         
-        
-    </section>
+        <!-- Items Summary Section -->
+        <section id="result-section" class="my-5">
+            <h2 class="calculator-section-title">Items Summary</h2>
+            <div id="result-print">
+                <div class="item-list">
+                    <ul id="item-list"></ul>
+                </div>
 
-    </div>
+                <div id="totals" class="result">
+                    <p>Total Volume: <span id="total-volume">0</span> m³</p>
+                    <p>Final Price for All Items: ₹<span id="final-price-all-items">0</span></p>
+                </div>
+            </div>
 
-    <div class="calculator-container">
-        <section style="margin: 3%;">
-            <h2>How to calculate the right amount of concrete</h2>
-            <p>Use our concrete calculator to help give an accurate amount of concrete required for your next project.</p>
-            <p><strong>Top Tip:</strong> You can build up a concrete calculation for complicated areas by adding additional shapes to the calculation. </p>
-            <div>
-                <p><strong>Step 1</strong><br>Measure the dimensions (length, width and depth) of the area you want to concrete.</p>
-                <p><strong>Step 2</strong><br>Double check the measurements, ideally get a second person to remeasure for accuracy.</p>
-                <p><strong>Step 3</strong><br>Enter these measurements into the calculator and select the correct units of measure.</p>
-                <p><strong>Step 4</strong><br>Make a note of the total concrete volume needed shown in M3.</p>
-                <p><strong>Step 5</strong><br>Select the application above to find the perfect concrete mix for your project.</p>
-                <p><strong>Step 6</strong><br>Select your concrete mix and enter your quantity (m3) to get a price before proceeding to checkout.  </p>
-                <p><strong>Top Tip:</strong>Our final price includes delivery and 45 minutes to offload your concrete from the truck. </p>
+            <div id="btnP">
+                <div style="display: flex; flex-direction: row;">
+                    <button id="order-btn" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Order Now
+                    </button>&nbsp;
+                    <button id="print-btn" class="btn btn-primary">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+                <button id="clear-all" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+            </div>
+
+            <!-- Order Form -->
+            <div id="order-form" style="display: none;">
+                <h3>Order Form</h3>
+                <div class="input-group">
+                    <label for="customer-name">Name:</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="customer-mobile">Mobile No:</label>
+                    <input type="tel" id="customer-mobile" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="customer-address">Address:</label>
+                    <input type="text" id="customer-address" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="delivery-date">Delivery Date:</label>
+                    <input type="date" id="delivery-date" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="need-pump">Need Pump?</label>
+                    <select id="need-pump">
+                        <option value="yes">Yes</option>
+                        <option value="no" selected>No</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="referral number">Referral Number :</label>
+                    <input type="text" id="referral number">
+                </div>
+                
+                <button id="submit-order" class="btn btn-primary mt-3">
+                    <i class="fas fa-paper-plane"></i> Submit Order
+                </button>
             </div>
         </section>
+
         <section>
-            <div class="container-why-we1">
-                <h2>Why ConcreteCrafts?</h2>
-                <p>
-                    <ul><li>Wide range of concrete mixes to choose from</li>
-                        <li>Low carbon concrete alternatives available</li>
-                        <li>Final price includes 45 minutes to offload your concrete from the truck</li>
-                        <li>Buy Online</li>
-                        <li>Your concrete delivered directly to you</li></ul>
-                </p>
+            <div>
+                <h4 style="display: flex; justify-content: center;">Watch video for guidance</h4>
             </div>
-            <div class="container-why-we">
-                <h2>Not sure what concrete you need?</h2>
-                <div class="spacebtn">
-                    <div>
-                        <h3>Make a free <br>consultation Call</h3>
-                        <h4>Name: <strong>Shivam Somwanshi</strong></h4>
-                        <h4>Contact NO :  +91 7744817803</h4>
-                        <!-- <button onclick="window.location.href='#services'">Lets talk</button> -->
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe 
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                  src="https://www.youtube.com/embed/sWs4zZwkYjA?si=P0zJbcUhTdeaf0qu" 
+                  frameborder="1" 
+                  allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- Contact -->
+        <section id="contact" class="my-5">
+            <div class="contact-info rounded shadow">
+                <h2 class="fw-bold mb-4">Contact Information</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h3 class="h5"><i class="fas fa-envelope me-2" aria-hidden="true"></i> Email</h3>
+                        <p class="mb-0">info.concretecrafts@gmail.com</p>
                     </div>
-                    <div>
-                        <img src="./images/shivam.png" alt="" style="width: 130px; border-radius: 15px;" >
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h3 class="h5"><i class="fas fa-phone me-2" aria-hidden="true"></i> Phone</h3>
+                        <p class="mb-0">+91 7744817803</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="h5"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i> Address</h3>
+                        <p class="mb-0">ConcreteCraft, ITI Corner Nanded</p>
                     </div>
                 </div>
             </div>
         </section>
+        </section>
         
-        
-    </div>
-
-    <div class="about-section1 contact-info">
-        <h2>Contact Information</h2>
-        <p>If you have any questions or inquiries, feel free to reach out to us:</p>
-        <ul>
-            <li>Email: <a href="mailto:info.concretecrafts@gmaiil.com">info.concretecrafts@gmaiil.com</a></li>
-            <li>Phone: +91-7744817803</li>
-            <li>Address: ConcreteCraft, ITI Corner Nanded</li>
-        </ul>
-    </div>
-    
+    </main>
 
     <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 ConcreteCraft. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <img src="./images/logo-transparent-png.png" alt="ConcreteCraft Logo" width="180" height="50" loading="lazy">
+                    <p class="mt-2 mb-0">Premium concrete solutions for all your construction needs.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="h5 mb-3">Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-white">About Us</a></li>
+                        <li class="mb-2"><a href="concrete-calculater.html" class="text-white">Calculator</a></li>
+                        <li><a href="Services.html" class="text-white">Services</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="h5 mb-3">Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="LinkedIn"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2024 ConcreteCraft. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white me-3">Terms of Service</a>
+                    <a href="contact.html" class="text-white">Contact Us</a>
+                </div>
+            </div>
         </div>
-    </div>
+    </footer>
 
-
-
-    <!-- JavaScript -->
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Calculator JavaScript -->
     <script>
-
-        document.getElementById('order-btn').addEventListener('click', function() {
-    document.getElementById('order-form').style.display = 'block';
-});
-
-// Handle order submission
-document.getElementById('submit-order').addEventListener('click', function() {
-    const name = document.getElementById('customer-name').value;
-    const mobile = document.getElementById('customer-mobile').value;
-    const address = document.getElementById('customer-address').value;
-    const deliveryDate = document.getElementById('delivery-date').value;
-    const needPump = document.getElementById('need-pump').value;
-    const companyName = document.getElementById('company-name').value;
-
-    // Print or process the order data
-    console.log({ name, mobile, address, deliveryDate, needPump, companyName });
-
-    // Here you can implement the logic to include the order details in the print function if needed.
-
-    alert('This functionality under development stage'); // Just a placeholder for feedback
-    document.getElementById('order-form').style.display = 'none'; // Close the form
-});
-
-
-
-// Add this at the beginning of your script
-const manualVolumeInput = document.getElementById('manual-volume');
-
-// Listen for input changes on the manual volume field
-manualVolumeInput.addEventListener('input', () => {
-    const manualVolume = parseFloat(manualVolumeInput.value) || 0;
-    volumeOutput.textContent = manualVolume.toFixed(2);
-    calculateCost();
-});
-
-// Ensure that the manual volume is considered when calculating total cost
-function calculateVolume() {
-    let volume = 0;
-    const depth = parseFloat(depthInput.value) || 0;
-
-    // Use manual volume if provided, otherwise calculate based on shape
-    const manualVolume = parseFloat(manualVolumeInput.value) || 0;
-    volume = manualVolume > 0 ? manualVolume : (selectedShape === 'circle' ? calculateCircleVolume(depth) : calculateShapeVolume(depth));
-
-    volumeOutput.textContent = volume.toFixed(2);
-    calculateCost();
-}
-
-function calculateShapeVolume(depth) {
-    let volume = 0;
-    if (selectedShape === 'square') {
-        const length = parseFloat(lengthInput.value) || 0;
-        const width = parseFloat(widthInput.value) || 0;
-        volume = length * width * depth;
-    } else if (selectedShape === 'triangle') {
-        const length = parseFloat(lengthInput.value) || 0;
-        const width = parseFloat(widthInput.value) || 0;
-        volume = (length * width * depth) / 2;
-    }
-    return volume;
-}
-
-function calculateCircleVolume(depth) {
-    const radius = parseFloat(radiusInput.value) || 0;
-    const angle = parseFloat(angleInput.value) || 360;
-    const area = Math.PI * Math.pow(radius, 2) * (angle / 360);
-    return area * depth;
-}
-
-        // JavaScript for Concrete Calculator
-        
+        // Initialize variables
         let totalVolume = 0;
         let finalPrice = 0;
         let items = [];
-        let itemCounter = 1; // Initialize item counter
-        
-        // Elements references
-        const multiplierInput = document.getElementById('multiplier');
-        const volumeOutput = document.getElementById('volume-output');
-        const pricePerCubicMeterSelect = document.getElementById('price-per-cubic-meter');
-        const deliveryChargeInput = document.getElementById('delivery-charge');
-        const additionalFeesInput = document.getElementById('additional-fees');
-        const totalCostOutput = document.getElementById('total-cost');
-        const shapeElements = document.querySelectorAll('.shape');
-        const radiusInput = document.getElementById('radius');
-        const angleInput = document.getElementById('angle');
-        const depthInput = document.getElementById('depth');
-        const lengthInput = document.getElementById('length');
-        const widthInput = document.getElementById('width');
-        const addItemBtn = document.getElementById('add-item-btn');
-        const itemList = document.getElementById('item-list');
-        
+        let itemCounter = 1;
         let selectedShape = 'square';
-        
-        function updateInputs() {
-            const isCircle = selectedShape === 'circle';
-            radiusInput.disabled = !isCircle;
-            angleInput.disabled = !isCircle;
-            depthInput.disabled = false;
-            lengthInput.disabled = isCircle;
-            widthInput.disabled = isCircle;
+
+        // Get DOM elements
+        const elements = {
+            length: document.getElementById('length'),
+            width: document.getElementById('width'),
+            radius: document.getElementById('radius'),
+            angle: document.getElementById('angle'),
+            depth: document.getElementById('depth'),
+            manualVolume: document.getElementById('manual-volume'),
+            volumeOutput: document.getElementById('volume-output'),
+            priceSelect: document.getElementById('price-per-cubic-meter'),
+            multiplier: document.getElementById('multiplier'),
+            itemName: document.getElementById('item-name'),
+            totalCostSingle: document.getElementById('total-cost-single'),
+            finalPrice: document.getElementById('final-price'),
+            itemList: document.getElementById('item-list'),
+            totalVolumeOutput: document.getElementById('total-volume'),
+            finalPriceAllItems: document.getElementById('final-price-all-items'),
+            shapes: document.querySelectorAll('.shape'),
+            lengthGroup: document.getElementById('length-group'),
+            widthGroup: document.getElementById('width-group'),
+            radiusGroup: document.getElementById('radius-group'),
+            angleGroup: document.getElementById('angle-group')
+        };
+
+        // Initialize calculator
+        function initCalculator() {
+            updateInputs();
+            setupEventListeners();
+            calculateVolume(); // Initial calculation
         }
-        
+
+        // Update input fields based on selected shape
+        function updateInputs() {
+            // Hide all input groups first
+            elements.lengthGroup.classList.add('hidden');
+            elements.widthGroup.classList.add('hidden');
+            elements.radiusGroup.classList.add('hidden');
+            elements.angleGroup.classList.add('hidden');
+
+            // Show relevant inputs based on shape
+            switch(selectedShape) {
+                case 'circle':
+                    elements.radiusGroup.classList.remove('hidden');
+                    elements.angleGroup.classList.remove('hidden');
+                    break;
+                case 'square':
+                    elements.lengthGroup.classList.remove('hidden');
+                    elements.widthGroup.classList.remove('hidden');
+                    break;
+                case 'triangle':
+                    elements.lengthGroup.classList.remove('hidden');
+                    elements.widthGroup.classList.remove('hidden');
+                    break;
+            }
+        }
+
+        // Calculate volume based on selected shape
         function calculateVolume() {
             let volume = 0;
-            const depth = parseFloat(depthInput.value) || 0;
-            if (selectedShape === 'circle') {
-                const radius = parseFloat(radiusInput.value) || 0;
-                const angle = parseFloat(angleInput.value) || 360;
-                const area = Math.PI * Math.pow(radius, 2) * (angle / 360);
-                volume = area * depth;
-            } else if (selectedShape === 'square') {
-                const length = parseFloat(lengthInput.value) || 0;
-                const width = parseFloat(widthInput.value) || 0;
-                volume = length * width * depth;
-            } else if (selectedShape === 'triangle') {
-                const length = parseFloat(lengthInput.value) || 0;
-                const width = parseFloat(widthInput.value) || 0;
-                volume = (length * width * depth) / 2;
+            const depth = parseFloat(elements.depth.value) || 0;
+            const manualVolume = parseFloat(elements.manualVolume.value) || 0;
+
+            if (manualVolume > 0) {
+                volume = manualVolume;
+            } else {
+                switch(selectedShape) {
+                    case 'circle':
+                        const radius = parseFloat(elements.radius.value) || 0;
+                        const angle = parseFloat(elements.angle.value) || 360;
+                        const area = Math.PI * Math.pow(radius, 2) * (angle / 360);
+                        volume = area * depth;
+                        break;
+                    case 'square':
+                        const length = parseFloat(elements.length.value) || 0;
+                        const width = parseFloat(elements.width.value) || 0;
+                        volume = length * width * depth;
+                        break;
+                    case 'triangle':
+                        const tLength = parseFloat(elements.length.value) || 0;
+                        const tWidth = parseFloat(elements.width.value) || 0;
+                        volume = (tLength * tWidth * depth) / 2;
+                        break;
+                }
             }
-            volumeOutput.textContent = volume.toFixed(2);
-            calculateCost();
+
+            elements.volumeOutput.textContent = volume.toFixed(2);
+            calculateCost(volume);
+            return volume;
         }
-        
-        function calculateCost() {
-            const volume = parseFloat(volumeOutput.textContent) || 0;
-            const pricePerCubicMeter = parseFloat(pricePerCubicMeterSelect.value) || 0;
-            const deliveryCharge = parseFloat(deliveryChargeInput.value) || 0;
-            const additionalFees = parseFloat(additionalFeesInput.value) || 0;
-            const multiplier = parseFloat(multiplierInput.value) || 1;
-    
-            const totalCostForOne = (volume * pricePerCubicMeter) + deliveryCharge + additionalFees;
-            const finalPriceValue = totalCostForOne * multiplier;
-    
-            document.getElementById('total-cost-single').textContent = totalCostForOne.toFixed(2);
-            document.getElementById('final-price').textContent = finalPriceValue.toFixed(2);
-        }
-        
-        function updateTotals() {
-            document.getElementById('total-volume').textContent = totalVolume.toFixed(2);
-            document.getElementById('final-price-all-items').textContent = finalPrice.toFixed(2);
-        }
-        
-        function addItem() {
-    const volume = parseFloat(volumeOutput.textContent) || 0;
-    const pricePerCubicMeter = parseFloat(pricePerCubicMeterSelect.value) || 0;
-    const multiplier = parseFloat(multiplierInput.value) || 1;
-    const grade = pricePerCubicMeterSelect.selectedOptions[0].text;
-    const itemName = document.getElementById('item-name').value || `Item ${itemCounter}`; // Default name if none is provided
 
-    const totalCostForOne = volume * pricePerCubicMeter;
-    const finalItemPrice = totalCostForOne * multiplier;
-    const totalItemVolume = volume * multiplier;
-
-    if (volume > 0 && pricePerCubicMeter > 0) {
-        const item = {
-            name: itemName, // Add item name here
-            volume: totalItemVolume,
-            price: finalItemPrice,
-            dimension: `${volume.toFixed(2)} m³`,
-            grade: grade,
-            nos: multiplier
-        };
-        items.push(item);
-
-        appendItemToList(item);
-
-        totalVolume += totalItemVolume;
-        finalPrice += finalItemPrice;
-        updateTotals();
-
-        itemCounter++; // Increment item counter
-    } else {
-        alert('Please enter valid values for volume and price.');
-    }
-}
-
-    
-function appendItemToList(item) {
-    const itemList = document.getElementById('item-list');
-
-    const listItem = document.createElement('div');
-    listItem.className = 'item-box';
-
-    listItem.innerHTML = `
-        <div>
+        // Calculate cost based on volume (with 18% GST)
+        function calculateCost(volume) {
+            const pricePerCubicMeter = parseFloat(elements.priceSelect.value) || 0;
+            const multiplier = parseFloat(elements.multiplier.value) || 1;
             
-            <p><strong>Item No.: #</strong>${itemCounter}</p>
-            <p><strong>Item Name:</strong> ${item.name}</p>
-            <p><strong>Number of items (NOS):</strong> ${item.nos}</p>
-            <p><strong>One item Volume (OIT):</strong> ${item.dimension}</p>
-            <p><strong>Grade:</strong> ${item.grade}</p>
-            <p><strong>Total Volume (NOS x OIT):</strong> ${item.volume.toFixed(2)} m³ | <strong>Total Price:</strong> ₹${item.price.toFixed(2)}</p>
-        </div>
-        <button class="delete-button">Delete</button>
-    `;
+            // Calculate base price
+            const basePriceForOne = volume * pricePerCubicMeter;
+            // Add 18% GST
+            const totalCostForOne = basePriceForOne * 1.18;
+            // Calculate final price for all items
+            const finalPriceValue = totalCostForOne * multiplier;
 
-    itemList.appendChild(listItem);
+            elements.totalCostSingle.textContent = totalCostForOne.toFixed(2);
+            elements.finalPrice.textContent = finalPriceValue.toFixed(2);
+        }
 
-    listItem.querySelector('.delete-button').addEventListener('click', () => {
-        deleteItem(item, listItem);
-    });
-}
+        // Add item to the list
+        function addItem() {
+            const volume = parseFloat(elements.volumeOutput.textContent) || 0;
+            const pricePerCubicMeter = parseFloat(elements.priceSelect.value) || 0;
+            const multiplier = parseFloat(elements.multiplier.value) || 1;
+            const grade = elements.priceSelect.selectedOptions[0].text;
+            const itemName = elements.itemName.value || `Item ${itemCounter}`;
 
-    
-        function deleteItem(item, listItem) {
-            listItem.remove();
-    
-            totalVolume -= item.volume;
-            finalPrice -= item.price;
-    
+            if (volume > 0 && pricePerCubicMeter > 0) {
+                const basePrice = volume * pricePerCubicMeter;
+                const totalPriceWithGST = basePrice * 1.18;
+                
+                const item = {
+                    id: Date.now(),
+                    name: itemName,
+                    volume: volume * multiplier,
+                    price: totalPriceWithGST * multiplier,
+                    dimension: `${volume.toFixed(2)} m³`,
+                    grade: grade,
+                    nos: multiplier
+                };
+
+                items.push(item);
+                appendItemToList(item);
+                updateTotals();
+                itemCounter++;
+                
+                // Reset item name field
+                elements.itemName.value = '';
+            } else {
+                alert('Please enter valid values for volume and price.');
+            }
+        }
+
+        // Append item to the list in DOM
+        function appendItemToList(item) {
+            const itemElement = document.createElement('li');
+            itemElement.innerHTML = `
+                <div class="item-details">
+                    <span><strong>Item No.:</strong> #${itemCounter}</span>
+                    <span><strong>Name:</strong> ${item.name}</span>
+                    <span><strong>Quantity:</strong> ${item.nos} x ${item.dimension}</span>
+                    <span><strong>Grade:</strong> ${item.grade}</span>
+                    <span><strong>Total Volume:</strong> ${item.volume.toFixed(2)} m³</span>
+                    <span><strong>Price (incl. GST):</strong> ₹${item.price.toFixed(2)}</span>
+                </div>
+                <button class="delete-button">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            `;
+
+            itemElement.querySelector('.delete-button').addEventListener('click', () => {
+                deleteItem(item.id, itemElement);
+            });
+
+            elements.itemList.appendChild(itemElement);
+        }
+
+        // Delete item from list
+        function deleteItem(itemId, itemElement) {
+            items = items.filter(item => item.id !== itemId);
+            itemElement.remove();
             updateTotals();
         }
-    
+
+        // Update totals display
+        function updateTotals() {
+            totalVolume = items.reduce((sum, item) => sum + item.volume, 0);
+            finalPrice = items.reduce((sum, item) => sum + item.price, 0);
+
+            elements.totalVolumeOutput.textContent = totalVolume.toFixed(2);
+            elements.finalPriceAllItems.textContent = finalPrice.toFixed(2);
+        }
+
+        // Clear all items
         function clearAll() {
-            document.getElementById('item-list').innerHTML = '';
+            elements.itemList.innerHTML = '';
+            items = [];
             totalVolume = 0;
             finalPrice = 0;
-            items = [];
-            itemCounter = 1; // Reset item counter
+            itemCounter = 1;
             updateTotals();
         }
-    
-        document.getElementById('clear-all').addEventListener('click', clearAll);
-        document.getElementById('add-item-btn').addEventListener('click', addItem);
-    
-        shapeElements.forEach(shapeElement => {
-            shapeElement.addEventListener('click', () => {
-                shapeElements.forEach(el => el.classList.remove('selected'));
-                shapeElement.classList.add('selected');
-                selectedShape = shapeElement.dataset.shape;
-                updateInputs();
-                calculateVolume();
+
+        // Enhanced Print Function
+        function printResults() {
+            // Create a print window
+            const printWindow = window.open('', '_blank');
+            
+            // Get current date
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-IN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
             });
-        });
-    
-        [radiusInput, angleInput, depthInput, lengthInput, widthInput].forEach(input => {
-            input.addEventListener('input', calculateVolume);
-        });
-    
-        [pricePerCubicMeterSelect, deliveryChargeInput, additionalFeesInput, multiplierInput].forEach(input => {
-            input.addEventListener('input', calculateCost);
-        });
-    
+            
+            // Create print content
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>ConcreteCraft Order Summary</title>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                padding: 20px;
+                                color: #333;
+                            }
+                            .print-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 20px;
+                                border-bottom: 2px solid #2A3F54;
+                                padding-bottom: 15px;
+                            }
+                            .print-header img {
+                                height: 60px;
+                            }
+                            .print-title {
+                                text-align: center;
+                            }
+                            .print-title h1 {
+                                color: #2A3F54
+                            }
+                                                        }
+                            .contact-info {
+                                margin-top: 30px;
+                                font-size: 14px;
+                                 display: flex;
+                                justify-content: space-around;
+                            }
 
+                            .line {
+                                border-top: 2px solid #2A3F54;
+                            }
 
+                            .line1 {
+                                border-top: 1px solid  #808080;
+                            }
+                             .order-totals {
+                                 background-color: lightblue;  
+                                 border: black;            
+                            }
 
-document.getElementById('print-btn').addEventListener('click', function () {
-    // Create header content
-    const headerContent = `
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 2px solid #000;">
-            <div>
-                <h1 style="margin: 0; font-size: 24px;">ConcreteCraft</h1>
-                <h3 style="margin: 0; font-size: 18; color: chocolate;">📞 +91 77448 17803</h3>
-                <p>Head Office: ITI Corner nanded</p>
-            </div>
-            <div>
-                <img src="./images/logo-transparent-png.png" alt="Company Logo" style="width: 250px;">
-            </div>
-        </div>
-    `;
+                        </style>
+                    </head>
+                    <body>
+                        <div class="print-header">
+                            <img src="./images/logo-transparent-png.png" alt="ConcreteCraft Logo">
+                            <div class="print-title">
+                                <h1>Concrete Order Summary</h1>
+                                <p>Generated: ${new Date().toLocaleString()}</p>
+                            </div>
+                        </div>
+                        <div class="order-details">
+                            ${items.map((item, index) => `
+                                <div class="order-item">
+                                    <h3> ${index + 1}: ${item.name}</h3>
+                                    <p>Grade: ${item.grade}</p>
+                                    <p>Quantity: ${item.nos} x ${item.dimension}</p>
+                                    <p>Total Volume: ${item.volume.toFixed(2)} m³</p>
+                                    <p><b>Price (GST 18% inclide): ₹${item.price.toFixed(2)}</b></p>
+                                    <p class="line1"></p>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="order-totals">
+                            <h2>Total Volume: ${totalVolume.toFixed(2)} m³</h2>
+                            <h2>Grand Total: ₹${finalPrice.toFixed(2)}</h2>
+                        </div>
+                        <div class="contact-info" >
+                            <h3>Contact Information</h3>
+                            <div>
+                                <p>ConcreteCraft Nanded</p>
+                                <p>Address: ITI Corner, Nanded</p>
+                            </div>
+                            <div>
+                                <p>Phone: +91 77448 17803</p>
+                                <p>Email: info@concretecraft.com</p>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.focus();
+            
+            // Delay print to ensure content loads
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
+        }
 
-    // Create footer content
-    const footerContent = `
-    <div class="about-section1 contact-info" style="margin-top: 0px; border-top: 2px solid #000; padding-top: 0px; contact">
-        <h2>Contact Information</h2>
-        <p>If you have any questions or inquiries, feel free to reach out to us:</p>
-        <ul>
-            <li>Website: <a href="www.concretecrafts.in">www.concretecrafts.in</a></li>
-            <li>Email: <a href="mailto:info.concretecrafts@gmail.com">info.concretecrafts@gmail.com</a></li>
-             <li>Concact No: <a href="+917744817803">+91 77448 17803</a></li>
-            <li>Address: ConcreteCraft, ITI Corner Nanded</li>
-        </ul>
-    </div>
-    `;
+        // Set up event listeners
+        function setupEventListeners() {
+            // Shape selection
+            elements.shapes.forEach(shape => {
+                shape.addEventListener('click', () => {
+                    elements.shapes.forEach(el => el.classList.remove('selected'));
+                    shape.classList.add('selected');
+                    selectedShape = shape.dataset.shape;
+                    updateInputs();
+                    calculateVolume();
+                });
+            });
 
-    // Get the current content for printing
-    const resultPrintContent = document.getElementById('result-print').innerHTML;
+            // Input fields
+            const calcInputs = [
+                elements.length,
+                elements.width,
+                elements.radius,
+                elements.angle,
+                elements.depth,
+                elements.manualVolume,
+                elements.priceSelect,
+                elements.multiplier
+            ];
 
-    // Combine header, content, and footer for printing
-    const printContent = `
-        ${headerContent}
-        <div>${resultPrintContent}</div>
-        ${footerContent}
-    `;
+            calcInputs.forEach(input => {
+                input.addEventListener('input', calculateVolume);
+            });
 
-    // Backup the original page content
-    const originalContent = document.body.innerHTML;
+            // Add item button
+            document.getElementById('add-item-btn').addEventListener('click', addItem);
 
-    // Replace the body content with print content
-    document.body.innerHTML = printContent;
+            // Clear all button
+            document.getElementById('clear-all').addEventListener('click', clearAll);
 
-    // Trigger the print function
-    window.print();
+            // Print button
+            document.getElementById('print-btn').addEventListener('click', printResults);
 
-    // Restore the original page content after printing with a delay to ensure print completes
-    setTimeout(function () {
-        document.body.innerHTML = originalContent;
-        location.reload();  // Reload to restore event listeners and original content
-    }, 1000);  // Delay of 1 second before restoring
-});
+            // Order button
+            document.getElementById('order-btn').addEventListener('click', () => {
+                document.getElementById('order-form').style.display = 'block';
+                window.scrollTo({
+                    top: document.getElementById('order-form').offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
 
+            // Submit order
+            document.getElementById('submit-order').addEventListener('click', (e) => {
+                e.preventDefault();
+                const orderDetails = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('customer-mobile').value,
+                    address: document.getElementById('customer-address').value,
+                    deliveryDate: document.getElementById('delivery-date').value,
+                    needPump: document.getElementById('need-pump').value,
+                    company: document.getElementById('referral number').value,
+                    items: items
+                };
 
+                if (!orderDetails.name || !orderDetails.mobile || !orderDetails.address) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
 
-// Initialize
-updateInputs();
-calculateVolume();
+                // Here you would typically send the order to a server
+                console.log('Order Submitted:', orderDetails);
+                alert('Order submitted successfully! We will contact you shortly.');
+                document.getElementById('order-form').reset();
+                document.getElementById('order-form').style.display = 'none';
+            });
 
+            // Manual volume input handling
+            elements.manualVolume.addEventListener('input', () => {
+                if (elements.manualVolume.value > 0) {
+                    elements.depth.disabled = true;
+                } else {
+                    elements.depth.disabled = false;
+                }
+            });
+        }
 
-    </script> 
-
+        // Initialize calculator when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initCalculator);
+    </script>
 </body>
 </html>
